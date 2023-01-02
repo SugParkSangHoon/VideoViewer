@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="영상뷰어.Views.SerchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:영상뷰어.Views"
+             xmlns:vb="clr-namespace:영상뷰어.ViewModels"
+             xmlns:convert="clr-namespace:영상뷰어.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vb:SateliteAPISettingsViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <convert:RadioBoolToEnum x:Key="CameraTypeConverter"/>
+        <ControlTemplate
+                 x:Key="rectRadioButton"
+                 TargetType="{x:Type RadioButton}">
+            <Border
+                    Name="border"
+                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                    CornerRadius="10"
+                    Padding="5"
+                    BorderThickness="1"
+                    Margin="2"
+                    Height="30"
+                    Width="200">
+                <ContentPresenter
+                        Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger
+                         Property="IsChecked"
+                         Value="True">
+                    <Setter
+                             TargetName="border"
+                             Property="BorderThickness"
+                             Value="3" />
+                    <Setter
+                             Property="FontWeight"
+                             Value="Bold" />
+                    <Setter
+                        TargetName="border"
+                        Property="BorderBrush"
+                        Value="Blue"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical" Margin="10">
+        <Button Content="요청" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" />
+        <DatePicker materialDesign:HintAssist.Hint="Pick a date" />
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="영상구분" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <RadioButton Template="{StaticResource rectRadioButton}"  Content="적외 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=ir105}"/>
+            <RadioButton Template="{StaticResource rectRadioButton}" Margin="10" Content="가시 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=vi006}"/>
+            <RadioButton Template="{StaticResource rectRadioButton}" Margin="10" Content="수증기 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=vv069}"/>
+            <RadioButton Template="{StaticResource rectRadioButton}" Margin="10" Content="단파적외 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=sw038}"/>
+            <RadioButton Template="{StaticResource rectRadioButton}" Margin="10" Content="RGB컬러 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=rgbt}"/>
+            <RadioButton Template="{StaticResource rectRadioButton}" Margin="10" Content="RGB 주야간합성 영상"
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=rgbdn}"/>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

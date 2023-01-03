@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace 영상뷰어.enums
 {
-    public enum eCameraType
+    public enum eCameraArea
     {
-        ir105,
-        vi006,
-        vv069,
-        sw038,
-        rgbt,
-        rgbdn
-    }    
+        fd,
+        ea,
+        ko
+    }
 }

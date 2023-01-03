@@ -7,9 +7,9 @@ namespace 영상뷰어.Converters
 {
     public class BoolToVisibilityConverter : IValueConverter
     {
-        public Visibility? TrueValue { get; set; } = Visibility.Visible;
+        public Visibility TrueValue { get; set; } = Visibility.Visible;
 
-        public Visibility? FalseValue { get; set; } = Visibility.Collapsed;
+        public Visibility FalseValue { get; set; } = Visibility.Collapsed;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

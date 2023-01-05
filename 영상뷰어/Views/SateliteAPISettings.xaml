@@ -7,11 +7,9 @@
              xmlns:local="clr-namespace:영상뷰어.Views"
              xmlns:vb="clr-namespace:영상뷰어.ViewModels"
              xmlns:convert="clr-namespace:영상뷰어.Converters"
+             xmlns:enum="clr-namespace:영상뷰어.enums"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <vb:SateliteAPISettingsViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <convert:RadioBoolToEnum x:Key="CameraTypeConverter"/>
         <ControlTemplate
@@ -50,8 +48,8 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical" Margin="10">
-        <Button Content="요청" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" />
-        <DatePicker materialDesign:HintAssist.Hint="Pick a date" />
+        <Button Content="요청" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" Command="{Binding Requset}" Cursor="Hand"/>
+        <DatePicker materialDesign:HintAssist.Hint="Pick a date" Padding ="10" SelectedDate="{Binding YesterdayDateTIme}"/>
         <StackPanel Orientation="Vertical" Margin="0">
             <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="영상구분" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Grid>
@@ -60,25 +58,25 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
                 <RadioButton Grid.Row="0" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="적외 영상"
-                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=ir105}"/>
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.ir105}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="0" Grid.Column="1" Template="{StaticResource rectRadioButton}" Margin="0" Content="가시 영상"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=vi006}"/>
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.vi006}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="1" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="수증기 영상"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=vv069}"/>
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.vv069}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="1" Grid.Column="1" 
                              Template="{StaticResource rectRadioButton}"  Content="단파적외 영상"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=sw038}"/>
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.sw038}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="2" Grid.Column="0"
                              Template="{StaticResource rectRadioButton}"  Content="RGB컬러 영상"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=rgbt}"/>
+                         IsChecked="{Binding Path=CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.rgbt}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="2" Grid.Column="2"
                              Template="{StaticResource rectRadioButton}"  Content="RGB 주야간합성 영상"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraType , Converter={StaticResource CameraTypeConverter},ConverterParameter=rgbdn}"/>
+                         IsChecked="{Binding Path=CameraType, Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraType.rgbdn}, Mode=TwoWay}"/>
             </Grid>
             
         </StackPanel>
@@ -90,15 +88,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
-                <RadioButton Grid.Row="0" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="전구"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter=fd}"/>
+                <RadioButton Grid.Row="0" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="전국"
+                         IsChecked="{Binding Path=CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraArea.fd}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="0" Grid.Column="1" Template="{StaticResource rectRadioButton}" Margin="0" Content="동아시아"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter=ea}"/>
+                         IsChecked="{Binding Path=CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraArea.ea}, Mode=TwoWay}"/>
                 <RadioButton Grid.Row="1" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="한반도"
-                         IsChecked="{Binding Path=SatelliteAPIModel.CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter=ko}"/>
+                         IsChecked="{Binding Path=CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraArea.ko}, Mode=TwoWay}"/>
             </Grid>
 
         </StackPanel>

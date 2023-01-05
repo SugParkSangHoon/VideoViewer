@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using 영상뷰어.ViewModels;
 
 namespace 영상뷰어.Views
 {
@@ -23,6 +24,7 @@ namespace 영상뷰어.Views
         public SerchBar()
         {
             InitializeComponent();
+            DataContext = App.Current.Services.GetService(typeof(SateliteAPISettingsViewModel));
         }
     }
 }

@@ -13,27 +13,30 @@ namespace 영상뷰어.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string? parameterString = parameter as string;
+            //string? parameterString = parameter as string;
 
-            if (parameterString != null)
-                return DependencyProperty.UnsetValue;
+            //if (parameterString != null)
+            //    return DependencyProperty.UnsetValue;
 
-            if(Enum.IsDefined(value.GetType(),value) == false)
-                return DependencyProperty.UnsetValue;
-            object parameterValue = Enum.Parse(value.GetType(), parameterString);
-            return parameterString.Equals(value);
+            //if(Enum.IsDefined(value.GetType(),value) == false)
+            //    return DependencyProperty.UnsetValue;
+            //object parameterValue = Enum.Parse(value.GetType(), parameterString);
+            //return parameterString.Equals(value);
+
+            return value.Equals(parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string? parameterString = parameter as string;
+            //string? parameterString = parameter as string;
 
-            if (parameterString == null)
-            {
-                return DependencyProperty.UnsetValue;
-            }
+            //if (parameterString == null)
+            //{
+            //    return DependencyProperty.UnsetValue;
+            //}
 
-            return Enum.Parse(targetType, parameterString);
+            //return Enum.Parse(targetType, parameterString);
+            return value.Equals(true) ? parameter : Binding.DoNothing;
         }
     }
 }

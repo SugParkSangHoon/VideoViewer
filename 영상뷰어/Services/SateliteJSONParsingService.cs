@@ -12,24 +12,29 @@ namespace 영상뷰어.Services
 {
     public class SateliteJSONParsingService
     {
+        private string[] parsingJsonData;
         public SateliteJSONParsingService(string json)
         {
             JObject jo = JObject.Parse(json);
+            parsingJsonData = ImageFileList(jo);           
+        }
+        public async Task<List<string>> DownLoadIMage()
+        {
+            List<string> resultFileNameList;
 
-            var imageList = ImageFileList(jo);
-
-            foreach (var item in imageList)
+            foreach (var item in parsingJsonData)
             {
-                string pattern = @"(\d{12})";
+                string result;
+                string pattern = @"(?:rgb-daynight_|ir|rgb-true_|wv|vi|sw)(\w+_\w+_\d+)";
                 Match match = Regex.Match(item, pattern);
-                if(match.Success)
-                {
-                    string result = match.Value;
-                    Console.WriteLine(result);
-                }
-                DownloadRemoteImageFile(item);
+                
+                if(match.Success)                
+                    result = match.Value;                                    
+                var fileName = awit DownloadRemoteImageFile(item, rsult);
+                resultFileNameList.Add(fileName);
                 Console.WriteLine($"item : {item}");
             }
+            return resultFileNameList;
         }
         private string[] ImageFileList(JObject jobject)
         {
@@ -41,8 +46,9 @@ namespace 영상뷰어.Services
 
             return imageitems;
         }
-        private async Task DownloadRemoteImageFile(string imageUrl)
+        private async Task<string> DownloadRemoteImageFile(string imageUrl, string fileName)
         {
+            string filePath;
             using (var httpClient = new HttpClient())
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Get, imageUrl))
@@ -52,8 +58,10 @@ namespace 영상뷰어.Services
                     {
                         var fileBytes = await content.ReadAsByteArrayAsync();
                         // Save the image file on the system
-                        File.WriteAllBytes($"{Guid.NewGuid()}.jpg", fileBytes);
+                        File.WriteAllBytes($"{fileName}.jpg", fileBytes);
+                        filePath = $@"{System.IO.Directory.GetCurrentDirectory()}/{fileName}";                        
                     }
+                    return filePath;
                 }
             }
         }

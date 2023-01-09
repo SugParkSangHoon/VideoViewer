@@ -20,18 +20,18 @@ namespace 영상뷰어.Services
         }
         public async Task<List<string>> DownLoadIMage()
         {
-            List<string> resultFileNameList;
+            List<string> resultFileNameList = new List<string>();
 
             foreach (var item in parsingJsonData)
             {
                 string result;
                 string pattern = @"(?:rgb-daynight_|ir|rgb-true_|wv|vi|sw)(\w+_\w+_\d+)";
                 Match match = Regex.Match(item, pattern);
-                
-                if(match.Success)                
-                    result = match.Value;                                    
-                var fileName = awit DownloadRemoteImageFile(item, rsult);
-                resultFileNameList.Add(fileName);
+
+                if (!match.Success)
+                    return resultFileNameList;
+                //string fileName = await DownloadRemoteImageFile(item, match.Value);
+                resultFileNameList.Add(await DownloadRemoteImageFile(item, match.Value));
                 Console.WriteLine($"item : {item}");
             }
             return resultFileNameList;
@@ -48,7 +48,7 @@ namespace 영상뷰어.Services
         }
         private async Task<string> DownloadRemoteImageFile(string imageUrl, string fileName)
         {
-            string filePath;
+            string? filePath;
             using (var httpClient = new HttpClient())
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Get, imageUrl))
@@ -58,8 +58,12 @@ namespace 영상뷰어.Services
                     {
                         var fileBytes = await content.ReadAsByteArrayAsync();
                         // Save the image file on the system
-                        File.WriteAllBytes($"{fileName}.jpg", fileBytes);
-                        filePath = $@"{System.IO.Directory.GetCurrentDirectory()}/{fileName}";                        
+                        
+                        string forder_Path = System.IO.Directory.GetCurrentDirectory() + $"/{DateTime.Now.ToString("yyyyMMdd")}";
+                        if(Directory.Exists(forder_Path) == false)
+                            Directory.CreateDirectory(forder_Path);
+                        File.WriteAllBytes($@"{forder_Path}/{fileName}.jpg", fileBytes);
+                        filePath = $@"{forder_Path}/{fileName}.jpg";                        
                     }
                     return filePath;
                 }

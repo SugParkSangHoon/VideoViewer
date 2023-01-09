@@ -8,7 +8,8 @@
         xmlns:converters="clr-namespace:영상뷰어.Converters"
         xmlns:v="clr-namespace:영상뷰어.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1400"
+        DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}">
         <Window.Resources>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <converters:BoolToVisibilityConverter
@@ -23,6 +24,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <v:SerchBar Visibility="{Binding IsEditing, Converter={StaticResource ReversBoolToVisibilityConverter}}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <v:SateliteAPIResultView/>
         </Grid>
         
     </Grid>

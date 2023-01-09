@@ -12,18 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using 영상뷰어.ViewModels;
 
 namespace 영상뷰어.Views
 {
     /// <summary>
-    /// SerchBar.xaml에 대한 상호 작용 논리
+    /// SateliteAPIResultView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SerchBar : UserControl
+    public partial class SateliteAPIResultView : UserControl
     {
-        public SerchBar()
+        public SateliteAPIResultView()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
     }
 }

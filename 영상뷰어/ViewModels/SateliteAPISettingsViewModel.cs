@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,9 @@ namespace 영상뷰어.ViewModels
         private readonly ISettingService _settingServices;        
         private eCameraType _cameraType;
         private eCameraArea _cameraArea;
-        private bool _isSelect;
+        private bool _isSelect;        
+
+        
         public bool IsSelected
         {
             get { return _isSelect; }
@@ -91,13 +94,26 @@ namespace 영상뷰어.ViewModels
         /// </summary>
         private async void OnRequset()
         {
+            ObservableCollection<SatelliteAPIModel> SateliteDataList = new ObservableCollection<SatelliteAPIModel>();
             SateliteAPIService APIService = new SateliteAPIService(_settingServices);
             var data = await APIService.ResponseAPI();
             SateliteJSONParsingService jsonParsing = new SateliteJSONParsingService(data);
-            
+            var fileList = await jsonParsing.DownLoadIMage();
+            int number = 0;
+            foreach (var file in fileList)
+            {
+
+                SatelliteAPIModel model = new SatelliteAPIModel();
+                model.ID = ++number;
+                model.Datetime = _settingServices.SeteliteAPISetting.Datetime;
+                model.FilePath = file;
+                model.User = "Park";
+                model.CameraArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
+                model.CameraType = _settingServices.SeteliteAPISetting.CameraType.ToString();
+                SateliteDataList.Add(model);
+            }
+            Messenger.Default.Send(SateliteDataList);
             data = "";
-
-
         }
 
         #endregion

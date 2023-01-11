@@ -21,9 +21,7 @@ namespace 영상뷰어.ViewModels
         private readonly ISettingService _settingServices;        
         private eCameraType _cameraType;
         private eCameraArea _cameraArea;
-        private bool _isSelect;        
-
-        
+        private bool _isSelect;                
         public bool IsSelected
         {
             get { return _isSelect; }

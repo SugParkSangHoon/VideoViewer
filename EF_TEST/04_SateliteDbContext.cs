@@ -35,7 +35,7 @@ namespace EF_TEST
                 //string connectionString = ConfigurationManager.ConnectionStrings
                 //    ["ConnectionString"].ConnectionString;
                 //string connectionString = @"Server = (localdb)\\mssqllocaldb; Database = SatelliteApp; Trusted_Connection = True;";
-                string connectionString = $@"Data Source=LAPTOP-PG7BFL9M;User ID=ParkSangHoon;Password=tjb4048796;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                string connectionString = "Server=127.0.0.1; Database=SateliteApp; uid=ParkSangHoon; pwd=tjb4048796;TrustServerCertificate=True";
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }

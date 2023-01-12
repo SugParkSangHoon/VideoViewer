@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using 영상뷰어.Models;
 
 namespace 영상뷰어.ViewModels
@@ -23,5 +24,40 @@ namespace 영상뷰어.ViewModels
         {
             SateliteItems = obj;
         }
+
+        #region MyCommand Command
+
+        /// <summary>
+        /// myCommand
+        /// </summary>
+        private DelegateCommand myCommand = null;
+
+        /// <summary>
+        /// Get MyCommand
+        /// </summary>
+        public ICommand MyCommand
+        {
+            get
+            {
+                if (this.myCommand == null)
+                {
+                    this.myCommand = new DelegateCommand(() => this.OnMyCommand());
+                }
+
+                return this.myCommand;
+            }
+        }
+        #endregion
+
+        #region OnMyCommand
+        /// <summary>
+        /// execute OnMyCommand
+        /// </summary>
+        private void OnMyCommand()
+        {
+        }
+
+        #endregion
+
     }
 }

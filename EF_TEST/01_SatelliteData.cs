@@ -31,7 +31,8 @@ namespace EF_TEST
         /// <summary>
         /// 파일 생성 날짜
         /// </summary>
-        
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime FileCreateDate { get; set; }
         /// <summary>
         /// 파일의 경로

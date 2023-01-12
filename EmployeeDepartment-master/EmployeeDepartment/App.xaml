@@ -1,8 +1,8 @@
-﻿<Application x:Class="EntityFrameworkCore_MSDN_Test.App"
+﻿<Application x:Class="EmployeeDepartment.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:EntityFrameworkCore_MSDN_Test"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:EmployeeDepartment"
+             StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

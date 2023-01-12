@@ -44,12 +44,12 @@ public class DBTESTContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer($@"Data Source=LAPTOP-PG7BFL9M;User ID=ParkSangHoon;Password={strPW};Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        //optionsBuilder.UseSqlServer($@"Data Source=LAPTOP-PG7BFL9M;User ID=ParkSangHoon;Password={strPW};Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<SatelliteData>().ToTable("SatelliteData");
+        //modelBuilder.Entity<SatelliteData>().ToTable("SatelliteData");
     }
 }
 
@@ -58,60 +58,60 @@ class Program
     static async Task Main(string[] args)
     {
 
-        //using (var db = new DBTESTContext())
+        using (var db = new DBTESTContext())
+        {
+
+
+            db.myTable.Add(new SatelliteData
+            {
+                NumberID = 2,
+                SatelliteArea = "Korea",
+                SatelliteType = "KO",
+                FilePath = @"C\FilePath\jdfds.jpg",
+                //FileCreateDate = DateTime.Now,
+                UserID = "HONG"
+            });
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException != null && ex.InnerException.InnerException != null)
+                {
+                    // Log the innermost exception message
+                    Console.WriteLine(ex.InnerException.InnerException.Message);
+                }
+                else
+                {
+                    // Log the exception message
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        //var option = new DbContextOptionsBuilder<SateliteDbContext>()
+        //            .UseInMemoryDatabase(databaseName: $"SatelliteData{Guid.NewGuid()}").Options;
+        //var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
+        //var factory = serviceProvider.GetService<ILoggerFactory>();
+
+        //using (var context = new SateliteDbContext(option))
         //{
+        //    context.Database.EnsureCreated(); //데이터 베이스가 만들어져 있는지 확인
+        //                                      //[A] Arrange :1 번 데이터를 아래 항목으로 저장
+        //    var repository = new SatelliteRepository(context, factory);
+        //    var model = new SatelliteData { NumberID = 2, FilePath = @"C\SaveFIle\1.jpg", SatelliteArea = "Korea", UserID = "ParkSangHoon", SatelliteType = "IR" };
 
-
-        //    db.myTable.Add(new SatelliteData
-        //    {
-        //        NumberID = 2,
-        //        SatelliteArea = "Korea",
-        //        SatelliteType = "KO",
-        //        FilePath = @"C\FilePath\jdfds.jpg",
-        //        //FileCreateDate = DateTime.Now,
-        //        UserID = "HONG"
-        //    });
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException ex)
-        //    {
-        //        if (ex.InnerException != null && ex.InnerException.InnerException != null)
-        //        {
-        //            // Log the innermost exception message
-        //            Console.WriteLine(ex.InnerException.InnerException.Message);
-        //        }
-        //        else
-        //        {
-        //            // Log the exception message
-        //            Console.WriteLine(ex.Message);
-        //        }
-        //    }
+        //    //[B] Act : AddAnsync() 메서드 테스트
+        //    await repository.AddAsync(model);
         //}
-        var option = new DbContextOptionsBuilder<SateliteDbContext>()
-                    .UseInMemoryDatabase(databaseName: $"SatelliteData{Guid.NewGuid()}").Options;
-        var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
-        var factory = serviceProvider.GetService<ILoggerFactory>();
 
-        using (var context = new SateliteDbContext(option))
-        {
-            context.Database.EnsureCreated(); //데이터 베이스가 만들어져 있는지 확인
-                                              //[A] Arrange :1 번 데이터를 아래 항목으로 저장
-            var repository = new SatelliteRepository(context, factory);
-            var model = new SatelliteData { NumberID = 2, FilePath = @"C\SaveFIle\1.jpg", SatelliteArea = "Korea", UserID = "ParkSangHoon", SatelliteType = "IR" };
-
-            //[B] Act : AddAnsync() 메서드 테스트
-            await repository.AddAsync(model);
-        }
-
-        using (var context = new SateliteDbContext(option))
-        {
-            context.Database.EnsureCreated();
-            var repository = new SatelliteRepository(context, factory);
-            var allData = await repository.GetAllAsync();
-            Console.WriteLine("Complete");
-        }
+        //using (var context = new SateliteDbContext(option))
+        //{
+        //    context.Database.EnsureCreated();
+        //    var repository = new SatelliteRepository(context, factory);
+        //    var allData = await repository.GetAllAsync();
+        //    Console.WriteLine("Complete");
+        //}
         Console.WriteLine("Complete");
         Console.ReadLine();
     }

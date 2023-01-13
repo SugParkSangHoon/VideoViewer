@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Common;
-using System.Xml;
-using EF_TEST;
-using Microsoft.Data.SqlClient;
+﻿using EF_TEST;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 public class DBData
 {
@@ -132,7 +131,7 @@ class Program
                                               //[A] Arrange :1 번 데이터를 아래 항목으로 저장
             var repository = new SatelliteRepository(context, factory);
             var model = (new SatelliteData
-            {                
+            {
                 SatelliteArea = "Korea",
                 SatelliteType = "NO",
                 FilePath = @"C\FilePath\jdfds2.jpg",

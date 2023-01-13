@@ -48,12 +48,9 @@
         </ControlTemplate>
     </UserControl.Resources>
     <Border  BorderBrush="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                BorderThickness="1">
+                BorderThickness="0.21">
         <StackPanel Orientation="Vertical" Margin="10">
-
-
-
-            <Button Content="요청" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" Command="{Binding Requset}" 
+            <Button Content="요청" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" Command="{Binding OnRequsetCommand}" 
                 Cursor="Hand" BorderThickness="1"/>
             <DatePicker materialDesign:HintAssist.Hint="Pick a date" Padding ="10" SelectedDate="{Binding YesterdayDateTIme}"/>
             <StackPanel Orientation="Vertical" Margin="0">

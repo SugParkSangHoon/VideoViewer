@@ -14,21 +14,25 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="위성 영상 API 정보" Padding="10"/>
-            <ListView Margin="10" ItemsSource="{Binding SateliteItems}" Grid.Row="1">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Number" Width="150" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="파일 경로" Width="300" DisplayMemberBinding="{Binding FilePath}" />
-                        <GridViewColumn Header="영상 구분" Width="150" DisplayMemberBinding="{Binding CameraType}"/>
-                        <GridViewColumn Header="지역 구분" Width="150" DisplayMemberBinding="{Binding CameraArea}"/>
-                        <GridViewColumn Header="저장 날짜" Width="150" DisplayMemberBinding="{Binding Datetime}"/>
-                        <GridViewColumn Header="사용자" Width="150" DisplayMemberBinding="{Binding User}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Border BorderThickness="0.2" BorderBrush="Black">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="위성 영상 API 정보" Padding="10"/>
+            </Border>
+            <Border BorderThickness="0.2" BorderBrush="Black" Grid.Row="1">
+                <ListView Margin="0" ItemsSource="{Binding SateliteItems}" Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="파일 경로" Width="300" DisplayMemberBinding="{Binding FilePath}" />
+                            <GridViewColumn Header="영상 구분" Width="150" DisplayMemberBinding="{Binding SatelliteType}"/>
+                            <GridViewColumn Header="지역 구분" Width="150" DisplayMemberBinding="{Binding SatelliteArea}"/>
+                            <GridViewColumn Header="저장 날짜" Width="150" DisplayMemberBinding="{Binding FileCreateDate}"/>
+                            <GridViewColumn Header="사용자" Width="150" DisplayMemberBinding="{Binding UserID}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+            
             <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <Button Content="SAVE" Width="117" Height="40" Margin="100 0 0 0"/>
+                <Button Content="SAVE" Width="117" Height="40" Margin="100 0 0 0" Command="{Binding onSaveCommand}"/>
                 <Button Content="LOAD" Width="117" Height="40" Margin="100 0 0 0"/>
                 <Button Content="SEARCH" Width="117" Height="40" Margin="100 0 0 0"/>
                 <Button Content="DELETE" Width="117" Height="40" Margin="100 0 0 0"/>

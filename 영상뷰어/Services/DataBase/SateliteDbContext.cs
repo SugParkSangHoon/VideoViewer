@@ -1,36 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.Models;
 
-namespace EF_TEST
+namespace 영상뷰어.Services.DataBase
 {
     public class SateliteDbContext : DbContext
     {
-        ///PM> Install-Package Microsoft.EntityFrameworkCore
-        ///PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer
-        ///PM> Install-Package Microsoft.EntityFrameworkCore.Tools
-        ///PM> Install-Package Microsoft.EntityFrameworkCore.InMemory
-        ///PM> Install-Package System.ConfigurationManager
-        ///PM> Install-Package Microsoft.Data.SqlClient
-        ///PM> Install-Package Dul
-
         public SateliteDbContext()
         {
 
         }
-        public SateliteDbContext(DbContextOptions<SateliteDbContext> options) 
-            :base(options)
-        {
-                
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if(!optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured)
             {
                 //string connectionString = ConfigurationManager.ConnectionStrings
                 //    ["ConnectionString"].ConnectionString;
@@ -49,6 +36,6 @@ namespace EF_TEST
             modelBuilder.Entity<SatelliteData>().Property(m => m.FileCreateDate).HasDefaultValueSql("GetDate()");
         }
         //[!] 현제 모든 테이블의대한참조
-        public DbSet<SatelliteData> SatelliteDatas { get; set; }
+        public DbSet<SatelliteData> SatelliteDatas { get; set; } 
     }
 }

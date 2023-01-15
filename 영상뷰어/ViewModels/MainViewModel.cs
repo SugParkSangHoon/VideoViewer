@@ -11,9 +11,10 @@ namespace 영상뷰어.ViewModels
     [POCOViewModel]
     public class MainViewModel 
     {
+        public bool IsBusy { get; set; } = false;
         public MainViewModel()
         {
-
+            
         }
     }
 }

@@ -11,7 +11,7 @@
         Title="MainWindow" Height="450" Width="1400"
         DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}">
         <Window.Resources>
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <converters:BoolToVisibilityConverter
                 x:Key="ReversBoolToVisibilityConverter"
                 FalseValue="Visible"
@@ -26,8 +26,25 @@
             <v:SerchBar Visibility="{Binding IsEditing, Converter={StaticResource ReversBoolToVisibilityConverter}}"/>
         </Grid>
         <Grid Grid.Column="1">
-            <v:SateliteAPIResultView/>
+            <v:SateliteAPIResultView Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}}"/>
         </Grid>
-        
+        <Border Background="#66000000" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1">
+            <Border
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    CornerRadius="5">
+                <StackPanel Width="100" Margin="10">
+                    <ProgressBar Height="10" IsIndeterminate="True" />
+                    <TextBlock
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Center"
+                            Text="Busy..." />
+                </StackPanel>
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
+            </Border>
+        </Border>
     </Grid>
 </Window>

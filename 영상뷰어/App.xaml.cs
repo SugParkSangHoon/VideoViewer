@@ -32,10 +32,12 @@ namespace 영상뷰어
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
                     service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
+                    
                 })
                 .Build();
-
+            
             ServiceProvider = host.Services;
+            
         }
         protected override async void OnStartup(StartupEventArgs e)
         {

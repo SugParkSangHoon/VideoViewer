@@ -17,15 +17,22 @@ namespace 영상뷰어.ViewModels
     [POCOViewModel]
     public class SateliteAPIResultViewModel
     {        
-        public virtual ObservableCollection<SatelliteData> SateliteItems { get; set; }
+        public virtual ObservableCollection<SatelliteData>? SateliteItems { get; set; }
+        public virtual SatelliteData SelectedItem { get; set; }
         public SateliteAPIResultViewModel()
         {
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
+
         }
 
         private void ReceiveData(ObservableCollection<SatelliteData> obj)
         {
             SateliteItems = obj;
+        }
+        [Command]
+        public virtual void SelectionChanged(object selectedItem)
+        {
+
         }
         public  virtual async Task onSave()
         {

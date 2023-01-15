@@ -97,21 +97,31 @@ namespace 영상뷰어.ViewModels
         public virtual async void OnRequset()
         {
             ObservableCollection<SatelliteData> SateliteDataList = new ObservableCollection<SatelliteData>();
-            SateliteAPIService APIService = new SateliteAPIService(_settingServices);
-            var data = await APIService.ResponseAPI();
-            SateliteJSONParsingService jsonParsing = new SateliteJSONParsingService(data);
-            var fileList = await jsonParsing.DownLoadIMage();            
-            foreach (var file in fileList)
-            {
+            //SateliteAPIService APIService = new SateliteAPIService(_settingServices);
+            //var data = await APIService.ResponseAPI();
+            //SateliteJSONParsingService jsonParsing = new SateliteJSONParsingService(data);
+            //var fileList = await jsonParsing.DownLoadIMage();            
+            //foreach (var file in fileList)
+            //{
 
-                SatelliteData model = new SatelliteData();
-                model.FileCreateDate = DateTime.Now;
-                model.FilePath = file;
-                model.UserID = "Park";
-                model.SatelliteArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
-                model.SatelliteType = _settingServices.SeteliteAPISetting.CameraType.ToString();
-                SateliteDataList.Add(model);
-            }
+            //    SatelliteData model = new SatelliteData();
+            //    model.FileCreateDate = DateTime.Now;
+            //    model.FilePath = file;
+            //    model.UserID = "Park";
+            //    model.SatelliteArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
+            //    model.SatelliteType = _settingServices.SeteliteAPISetting.CameraType.ToString();
+            //   // SateliteDataList.Add(model);
+            //}
+
+            SateliteDataList.Add(new SatelliteData
+            {
+                NumberID = 1,
+                FileCreateDate = DateTime.Now,
+                FilePath = @"C\data\dd.jpg",
+                SatelliteArea = "test",
+                SatelliteType = "Phone",
+                UserID = "Park"
+            }); ;
             Messenger.Default.Send(SateliteDataList);            
 
         }

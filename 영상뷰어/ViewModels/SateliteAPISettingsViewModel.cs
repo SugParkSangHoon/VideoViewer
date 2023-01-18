@@ -59,6 +59,8 @@ namespace 영상뷰어.ViewModels
         //        _settingServices.SeteliteAPISetting.Datetime = value.ToString("yyyyMMdd");                
         //    }
         //}
+
+        //Test
         public SateliteAPISettingsViewModel(ISettingService settingservice)
         {
             _settingServices = settingservice;

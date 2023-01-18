@@ -15,6 +15,7 @@ using 영상뷰어.Services;
 
 namespace 영상뷰어.ViewModels
 {
+    //Test
     [POCOViewModel]
     public class SateliteAPISettingsViewModel : ViewModelBase
     {

@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
 namespace 영상뷰어.Converters
 {
     [ValueConversion(typeof(Mat), typeof(WriteableBitmap))]
@@ -16,9 +17,8 @@ namespace 영상뷰어.Converters
             {
                 return null;
             }
-
             string pixelFormat = parameter.ToString();
-
+            //return cnvt.ToBitmap();
             return pixelFormat switch
             {
                 "Bgr101010" => cnvt.ToWriteableBitmap(cnvt.Width, cnvt.Height, PixelFormats.Bgr101010, null),
@@ -49,6 +49,8 @@ namespace 영상뷰어.Converters
                 "Rgba64" => cnvt.ToWriteableBitmap(cnvt.Width, cnvt.Height, PixelFormats.Rgba64, null),
                 _ => cnvt.ToWriteableBitmap(cnvt.Width, cnvt.Height, PixelFormats.Bgr24, null)
             };
+
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

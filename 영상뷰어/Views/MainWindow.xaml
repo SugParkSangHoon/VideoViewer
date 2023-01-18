@@ -26,9 +26,9 @@
             <v:SerchBar Visibility="{Binding IsEditing, Converter={StaticResource ReversBoolToVisibilityConverter}}"/>
         </Grid>
         <Grid Grid.Column="1">
-            <v:SateliteAPIResultView Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}}"/>
+            <v:SateliteAPIResultView Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}"/>
         </Grid>
-        <Border Background="#66000000" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1">
+        <Border Background="#66000000" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}" Grid.Column="1">
             <Border
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

@@ -101,7 +101,8 @@
                     <RadioButton Grid.Row="1" Grid.Column="0" Template="{StaticResource rectRadioButton}"  Content="한반도"
                          IsChecked="{Binding Path=CameraArea , Converter={StaticResource CameraTypeConverter},ConverterParameter={x:Static enum:eCameraArea.ko}, Mode=TwoWay}"/>
                 </Grid>
-
+                <Button Content="TEST" materialDesign:BadgedAssist.BadgeBackground="{DynamicResource PrimaryHueMidBrush}" Command="{Binding OnTestCommand}" 
+                Cursor="Hand" BorderThickness="1"/>
             </StackPanel>
         </StackPanel>
     </Border>

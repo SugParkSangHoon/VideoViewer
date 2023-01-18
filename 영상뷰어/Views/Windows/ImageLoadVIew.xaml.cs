@@ -21,9 +21,9 @@ namespace 영상뷰어.Views.Windows
     public partial class ImageLoadVIew : Window, IDialog
     {
         public ImageLoadVIew()
-        {
-            this.DataContext = new DialogViewModel();
+        {           
             InitializeComponent();
+            this.DataContext = new DialogViewModel();
 
         }
 

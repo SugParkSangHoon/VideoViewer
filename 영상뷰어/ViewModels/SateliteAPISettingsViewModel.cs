@@ -16,7 +16,7 @@ using 영상뷰어.Services;
 namespace 영상뷰어.ViewModels
 {
     [POCOViewModel]
-    public class SateliteAPISettingsViewModel 
+    public class SateliteAPISettingsViewModel : ViewModelBase
     {
         private readonly ISettingService _settingServices;
         //private eCameraType _cameraType;

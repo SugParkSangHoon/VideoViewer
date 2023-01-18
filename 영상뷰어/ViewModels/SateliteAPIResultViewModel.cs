@@ -9,18 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using 영상뷰어.Interfaces;
 using 영상뷰어.Models;
+using 영상뷰어.Services;
 using 영상뷰어.Services.DataBase;
+using 영상뷰어.Views.Windows;
 
 namespace 영상뷰어.ViewModels
 {
     [POCOViewModel]
-    public class SateliteAPIResultViewModel
-    {        
+    public class SateliteAPIResultViewModel :ViewModelBase
+    {
+        private readonly Interfaces.IDialogService _idialogService;
         public virtual ObservableCollection<SatelliteData>? SateliteItems { get; set; }
         public virtual SatelliteData SelectedItem { get; set; }
-        public SateliteAPIResultViewModel()
+        public SateliteAPIResultViewModel(Interfaces.IDialogService service)
         {
+            _idialogService = service;
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
 
         }
@@ -52,6 +57,10 @@ namespace 영상뷰어.ViewModels
                     await repository.AddAsync(item);
                 }               
             }
+        }
+        public virtual void onButtonLoad()
+        {
+            
         }
 
     }

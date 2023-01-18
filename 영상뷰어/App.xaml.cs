@@ -12,6 +12,9 @@ using 영상뷰어.Interfaces;
 using 영상뷰어.Services;
 using DevExpress.Mvvm;
 using Microsoft.Extensions.Hosting;
+using System.ComponentModel;
+using 영상뷰어.enums;
+using 영상뷰어.Views.Windows;
 
 namespace 영상뷰어
 {
@@ -22,8 +25,10 @@ namespace 영상뷰어
     {
         public static IServiceProvider ServiceProvider { get; private set; }
         private readonly IHost host;
+        
         public App()
         {
+            
             Messenger.Default = new Messenger(isMultiThreadSafe: true, actionReferenceType: ActionReferenceType.WeakReference);
             host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, service) =>
@@ -31,16 +36,23 @@ namespace 영상뷰어
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
-                    service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
                     
+                    service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
+                    service.AddSingleton<Interfaces.IDialogService, DialogService>(obj => new DialogService());                    
                 })
                 .Build();
+            
             
             ServiceProvider = host.Services;
             
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
+            
+            //var dialogService = ServiceProvider.GetService<DialogService>();            
+            var dialogService = (DialogService)App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService));
+            dialogService.Register<ImageLoadVIew>();
+
             await host.StartAsync();
             base.OnStartup(e);
         }

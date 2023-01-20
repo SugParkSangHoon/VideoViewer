@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace DialogService.ViewModels
 {
-	public class MainViewModel : ViewModelBase
+	public class MainViewModel : ViewModelBase, IContext
 	{
 		private RelayCommand _goRectCommand;
 

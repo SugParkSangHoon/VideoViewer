@@ -15,6 +15,7 @@ using 영상뷰어.Services;
 
 namespace 영상뷰어.ViewModels
 {
+    //Test
     [POCOViewModel]
     public class SateliteAPISettingsViewModel : ViewModelBase
     {
@@ -58,6 +59,8 @@ namespace 영상뷰어.ViewModels
         //        _settingServices.SeteliteAPISetting.Datetime = value.ToString("yyyyMMdd");                
         //    }
         //}
+
+        //Test
         public SateliteAPISettingsViewModel(ISettingService settingservice)
         {
             _settingServices = settingservice;

@@ -50,8 +50,8 @@ namespace 영상뷰어
         {
             
             //var dialogService = ServiceProvider.GetService<DialogService>();            
-            var dialogService = (DialogService)App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService));
-            dialogService.Register<ImageLoadVIew>();
+            var dialogService = App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService)) as DialogService;
+            dialogService.Register<Dialog>();
 
             await host.StartAsync();
             base.OnStartup(e);

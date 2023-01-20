@@ -19,11 +19,11 @@ namespace DialogService
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-			dialog.Register<MainWindow>();
-			dialog.Register<Dialog>();
+            
+            dialog.Register<Dialog>();
 			dialog.Register<Dialog2>();
-
+			dialog.Register<MainWindow>();
 			dialog.Set<MainViewModel, MainWindow>(new MainViewModel());
-		}
+        }
 	}
 }

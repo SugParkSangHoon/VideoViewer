@@ -16,17 +16,13 @@ using 영상뷰어.Interfaces;
 namespace 영상뷰어.Views.Windows
 {
     /// <summary>
-    /// ImageLoadVIew.xaml에 대한 상호 작용 논리
+    /// Dialog.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ImageLoadVIew : Window, IDialog
+    public partial class Dialog : Window ,IDialog
     {
-        public ImageLoadVIew()
-        {           
+        public Dialog()
+        {
             InitializeComponent();
-            this.DataContext = new DialogViewModel();
-
         }
-
-        public Action? CloseCallback { get; set; }
     }
 }

@@ -99,31 +99,31 @@ namespace 영상뷰어.ViewModels
         {
             Messenger.Default.Send(true);
             ObservableCollection<SatelliteData> SateliteDataList = new ObservableCollection<SatelliteData>();
-            SateliteAPIService APIService = new SateliteAPIService(_settingServices);
-            var data = await APIService.ResponseAPI();
-            SateliteJSONParsingService jsonParsing = new SateliteJSONParsingService(data);
-            var fileList = await jsonParsing.DownLoadIMage();
-            foreach (var file in fileList)
-            {
-
-                SatelliteData model = new SatelliteData();
-                model.FileCreateDate = DateTime.Now;
-                model.FilePath = file;
-                model.UserID = "Park";
-                model.SatelliteArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
-                model.SatelliteType = _settingServices.SeteliteAPISetting.CameraType.ToString();
-                SateliteDataList.Add(model);
-            }
-
-            //SateliteDataList.Add(new SatelliteData
+            //SateliteAPIService APIService = new SateliteAPIService(_settingServices);
+            //var data = await APIService.ResponseAPI();
+            //SateliteJSONParsingService jsonParsing = new SateliteJSONParsingService(data);
+            //var fileList = await jsonParsing.DownLoadIMage();
+            //foreach (var file in fileList)
             //{
-            //    NumberID = 1,
-            //    FileCreateDate = DateTime.Now,
-            //    FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg",
-            //    SatelliteArea = "test",
-            //    SatelliteType = "Phone",
-            //    UserID = "Park"
-            //}); ;
+
+            //    SatelliteData model = new SatelliteData();
+            //    model.FileCreateDate = DateTime.Now;
+            //    model.FilePath = file;
+            //    model.UserID = "Park";
+            //    model.SatelliteArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
+            //    model.SatelliteType = _settingServices.SeteliteAPISetting.CameraType.ToString();
+            //    SateliteDataList.Add(model);
+            //}
+
+            SateliteDataList.Add(new SatelliteData
+            {
+                NumberID = 1,
+                FileCreateDate = DateTime.Now,
+                FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg",
+                SatelliteArea = "test",
+                SatelliteType = "Phone",
+                UserID = "Park"
+            }); ;
             Messenger.Default.Send(SateliteDataList);
             Messenger.Default.Send(false);
         }

@@ -11,12 +11,13 @@ namespace 영상뷰어.Views.Windows
 {
     public class DialogViewModel : ViewModelBase, IDialogContext
     {
-		private IContext _context;
+		//private IContext _context;
 
-		public IContext Context
-		{
-			get => _context;
-			set => SetProperty(ref _context, value, "Context");
-		}
+		//public IContext Context
+		//{
+		//	get => _context;
+		//	set => SetProperty(ref _context, value, "Context");
+		//}
+		public IContext Context { get; set; }
 	}
 }

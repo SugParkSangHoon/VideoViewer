@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:영상뷰어"
              xmlns:vm ="clr-namespace:영상뷰어.ViewModels"
              xmlns:cn ="clr-namespace:영상뷰어.Converters"
+             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -16,6 +17,9 @@
             <cn:BitmapToBitmapSourceConverter x:Key="BitmapToBitmapSourceConverter"/>
             <cn:MatToWriteableBitmapConverter x:Key="MatToWriteableBitmapConverter"/>
             <vm:ViewModelLocator x:Key="Locator"/>
+            <DataTemplate DataType="{x:Type vm:ImageLoadViewModel}">
+                <vw:LoadImageView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

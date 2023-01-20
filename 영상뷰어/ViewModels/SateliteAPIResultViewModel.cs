@@ -60,7 +60,8 @@ namespace 영상뷰어.ViewModels
         }
         public virtual void onButtonLoad()
         {
-            
+            _idialogService.Set(new ImageLoadViewModel());
+            Messenger.Default.Send(SelectedItem.FilePath);
         }
 
     }

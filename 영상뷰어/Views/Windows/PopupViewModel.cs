@@ -10,7 +10,13 @@ using 영상뷰어.Interfaces;
 namespace 영상뷰어.Views.Windows
 {
     public class DialogViewModel : ViewModelBase, IDialogContext
-    {        
-        public IContext Context { get; set; }
-    }
+    {
+		private IContext _context;
+
+		public IContext Context
+		{
+			get => _context;
+			set => SetProperty(ref _context, value, "Context");
+		}
+	}
 }

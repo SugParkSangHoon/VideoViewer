@@ -1,5 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
+using Microsoft.Extensions.DependencyInjection;
 using OpenCvSharp;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,14 @@ namespace 영상뷰어.ViewModels
         {
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value, "IsBusy"); }
+        }
+        public virtual SateliteAPISettingsViewModel SateliteSearch
+        {
+            get=> (SateliteAPISettingsViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
+        }
+        public virtual SateliteAPIResultViewModel SateliteResultView
+        {
+            get => (SateliteAPIResultViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
         }
         //public bool IsBusy { get; set; } = false;
         public MainViewModel()

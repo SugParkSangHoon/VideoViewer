@@ -12,144 +12,80 @@ namespace 영상뷰어.Services
 {
     public class DialogService : IDialogService
     {
-        private List<Type> _dialogTypes = new List<Type>();
-
-        private List<IDialog> _openedDialogs = new List<IDialog>();
-
-        public void Register<TDialog>()
-            where TDialog : class, IDialog
+        private Dictionary<EDialogHostType, Type>? _dialogWindowHost;
+        public DialogService()
         {
-            // TODO : 동기화 처리 필요.
-
-            var type = typeof(TDialog);
-            if (this._dialogTypes.Any(d => d.Equals(type)))
-            {
-                return;
-            }
-
-            this._dialogTypes.Add(type);
+            _dialogWindowHost = new Dictionary<EDialogHostType, Type>(3);
         }
-
-        public void Set<TContext>(TContext context) where TContext : IContext
+        public void Register(EDialogHostType dialogHostType, Type dialogWindowHostType)
         {
-            // 등록되어 있는 첫번째 Window 를 띄운다.
-
-            this.Set((t) => true, context);
+            _dialogWindowHost.Add(dialogHostType, dialogWindowHostType);
         }
-
-        public void Set<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog
+        public bool CheckActivate(string title)
         {
-            var type = typeof(TDialog);
-            this.Set((t) => t.Equals(type), context);
-        }
-
-        public bool? SetAwait<TContext>(TContext context) where TContext : IContext
-        {
-            return this.Set((t) => true, context, true);
-        }
-
-        public bool? SetAwait<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog
-        {
-            var type = typeof(TDialog);
-            return this.Set((t) => t.Equals(type), context, true);
-        }
-
-        private bool? Set<TContext>(Func<Type, bool> isExist, TContext context, bool isModal = false)
-            where TContext : IContext
-        {
-            if (this._dialogTypes.Any(isExist) == false)
+            var popupWin = App.Current.Windows.Cast<Window>().FirstOrDefault(p => p.Title == title);
+            if( popupWin != null)
             {
-                throw new NotImplementedException("There is no matched dialog type.");
-            }
-
-            var dialogType = this._dialogTypes.First(isExist);
-            var dialog = Activator.CreateInstance(dialogType) as IDialog;
-
-            var dataContext = dialog.DataContext as IDialogContext;
-            dataContext.Context = context;
-
-            this._openedDialogs.Add(dialog);
-
-            if (isModal == false)
-            {
-                dialog.Show();
-
-                return null;
-            }
-
-            return dialog.ShowDialog();
-        }
-
-        public void Out<TContext>(TContext context) where TContext : IContext
-        {
-            this.Out((d) =>
-            {
-                var dataContext = d.DataContext as IDialogContext;
-                return dataContext.Context.Equals(context);
-            });
-        }
-
-        private void Out(Func<IDialog, bool> isExist)
-        {
-            var opened = this._openedDialogs.Where(isExist).ToList();
-
-            try
-            {
-                foreach (var dialog in opened)
-                {
-                    dialog.Close();
-                    dialog.DataContext = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                foreach (var dialog in opened)
-                {
-                    this._openedDialogs.Remove(dialog);
-                }
-            }
-        }
-
-        public void Out<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog
-        {
-            this.Out((d) =>
-            {
-                var dialogType = d.GetType();
-                return dialogType.Equals(typeof(TDialog));
-            });
+                popupWin.Activate();
+                return true;
+            } 
+            return false;
         }
 
         public void Clear()
         {
-            this._openedDialogs.ForEach(d =>
+            foreach(var window in App.Current.Windows)
             {
-                try
+                if(window is IDialog popupDialog)
                 {
-                    d.Close();
+                    popupDialog.CloseCallback = null;
+                    if(popupDialog.DataContext is PopupDialogViewModelBase vm)
+                    {
+                        vm.Cleanup();
+                    }
+                    popupDialog.DataContext = null;
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-            });
-            this._openedDialogs.Clear();
-
-            this._dialogTypes.Clear();
+            }
+            _dialogWindowHost.Clear();
         }
 
-        public void Dispose()
+
+
+        public void SetVM(DevExpress.Mvvm.ViewModelBase vm, string? title, double width, double height, EDialogHostType dialogHostType, bool isModal = true)
         {
-            this.Clear();
+            Type dialogWindowHostType = _dialogWindowHost[dialogHostType];
+            var popupDialog = Activator.CreateInstance(dialogWindowHostType) as IDialog;
+            if(popupDialog == null)
+            {
+                throw new Exception("팝업 다이얼로그 생성 불가 , IDialog 타입인지 확인 부탁드립니다");
+            }
+            popupDialog.CloseCallback = () =>
+            {
+                popupDialog.CloseCallback = null;
+
+                if (popupDialog.DataContext is PopupDialogViewModelBase vm)
+                {
+                    vm.Cleanup();
+                }
+                popupDialog.DataContext = null;
+                    
+            };
+            if(popupDialog.DataContext is PopupDialogViewModelBase viewModel)
+            {
+                popupDialog.Width = width;
+                popupDialog.Height = height;
+                popupDialog.Title = title;
+                viewModel.PopupVM = vm;
+
+                if (isModal)
+                {
+                    popupDialog.ShowDialog();
+                }
+                else
+                {
+                    popupDialog.Show();
+                }
+            }
         }
     }
 }

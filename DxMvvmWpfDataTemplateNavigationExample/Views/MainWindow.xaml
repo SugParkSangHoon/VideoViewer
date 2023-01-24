@@ -14,10 +14,10 @@
     </Window.DataContext>-->
     <Window.Resources>
         <DataTemplate x:Key="SubView1Template">
-            <views:SubView1/>
+            <views:SubView1 DataContext="{Binding SubViewModel1}"/>
         </DataTemplate>
         <DataTemplate x:Key="SubView2Template">
-            <views:SubView2/>
+            <views:SubView2 DataContext="{Binding SubViewModel2}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

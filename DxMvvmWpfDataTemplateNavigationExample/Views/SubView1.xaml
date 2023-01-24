@@ -9,7 +9,7 @@
              >
     <Grid  HorizontalAlignment="Center"
           VerticalAlignment="Center">
-        <TextBlock Text="Test1"
+        <TextBlock Text="{Binding Message}"
                    FontSize="30"/>
     </Grid>
 </UserControl>

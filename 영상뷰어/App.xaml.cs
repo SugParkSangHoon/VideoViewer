@@ -32,7 +32,8 @@ namespace 영상뷰어
             Messenger.Default = new Messenger(isMultiThreadSafe: true, actionReferenceType: ActionReferenceType.WeakReference);
             host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, service) =>
-                {                                        
+                {
+                    service.AddTransient(ViewModelSource.GetPOCOType(typeof(ShellViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
@@ -48,13 +49,23 @@ namespace 영상뷰어
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
-            
-            //var dialogService = ServiceProvider.GetService<DialogService>();            
-            var dialogService = App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService)) as DialogService;
-            dialogService.Register<Dialog>();
 
+            //var dialogService = ServiceProvider.GetService<DialogService>();
+            //var dialogService = App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService)) as DialogService;
+            //dialogService.Register<Dialog>();
             await host.StartAsync();
             base.OnStartup(e);
+
+            var dialogService = (DialogService)App.ServiceProvider.GetRequiredService
+                                (typeof(Interfaces.IDialogService));
+            dialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
+
+            var shellViewModel = (ShellViewModel)App.ServiceProvider.GetRequiredService
+                                (ViewModelSource.GetPOCOType(typeof(ShellViewModel)));
+            shellViewModel.CurrentDataContext = (MainViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
+            var shellWindow = new WPFMainShell();
+            shellWindow.DataContext = shellViewModel;
+            shellWindow.ShowDialog();
         }
 
         protected override async void OnExit(ExitEventArgs e)

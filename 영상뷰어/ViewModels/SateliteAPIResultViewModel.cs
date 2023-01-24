@@ -20,14 +20,13 @@ namespace 영상뷰어.ViewModels
     [POCOViewModel]
     public class SateliteAPIResultViewModel :ViewModelBase
     {
-        private readonly Interfaces.IDialogService _idialogService;
+        private readonly Interfaces.IDialogService _dialogService;
         public virtual ObservableCollection<SatelliteData>? SateliteItems { get; set; }
         public virtual SatelliteData SelectedItem { get; set; }
         public SateliteAPIResultViewModel(Interfaces.IDialogService service)
         {
-            _idialogService = service;
+            _dialogService = service;
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
-
         }
 
         private void ReceiveData(ObservableCollection<SatelliteData> obj)
@@ -58,9 +57,12 @@ namespace 영상뷰어.ViewModels
                 }               
             }
         }
+        [Command]
         public virtual void onButtonLoad()
         {
-            _idialogService.Set(new ImageLoadViewModel());
+            //_idialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
+            _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 600, enums.EDialogHostType.BasicType);
+           // _idialogService.Set(new ImageLoadViewModel());
             Messenger.Default.Send(SelectedItem.FilePath);
         }
 

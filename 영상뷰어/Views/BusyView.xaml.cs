@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using 영상뷰어.Interfaces;
 
-namespace 영상뷰어.Views.Windows
+namespace 영상뷰어.Views
 {
     /// <summary>
-    /// Dialog.xaml에 대한 상호 작용 논리
+    /// BusyView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Dialog : Window ,IDialog
+    public partial class BusyView : UserControl
     {
-        public Dialog()
+        public BusyView()
         {
             InitializeComponent();
-            this.DataContext = new PopupViewModel();
         }
-
-        public Action? CloseCallback { get; set; }
     }
 }

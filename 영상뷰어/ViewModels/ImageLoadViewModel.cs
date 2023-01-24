@@ -12,7 +12,7 @@ namespace 영상뷰어.ViewModels
 {
 
     [POCOViewModel]
-    public class ImageLoadViewModel : ViewModelBase, IContext
+    public class ImageLoadViewModel : ViewModelBase
     {
         public virtual Mat PrintMat { get; set; }
         public string TestText { get; set; }    

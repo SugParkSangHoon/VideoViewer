@@ -37,8 +37,14 @@ namespace 영상뷰어.ViewModels
         //    }
         //}
         public virtual bool IsSelected { get; set; }    
-        public virtual eCameraType CameraType { get; set; }
-        public virtual eCameraArea CameraArea { get; set; }
+        public virtual eCameraType CameraType {
+            get => _settingServices.SeteliteAPISetting.CameraType;
+            set => _settingServices.SeteliteAPISetting.CameraType = value;
+        }
+        public virtual eCameraArea CameraArea {
+            get => _settingServices.SeteliteAPISetting.CameraArea;
+            set => _settingServices.SeteliteAPISetting.CameraArea = value;
+        }
         public virtual DateTime YesterdayDateTIme { get; set; } 
         //public eCameraArea CameraArea
         //{

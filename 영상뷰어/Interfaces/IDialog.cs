@@ -10,13 +10,23 @@ namespace 영상뷰어.Interfaces
 {
     public interface IDialog
     {
-        object DataContext { get; set; }
+        public string? Title { get; set; }
+
+        public double Width { get; set; }
+
+        public double Height { get; set; }
+
+        object? DataContext { get; set; }
+
+        bool Activate();
 
         void Show();
 
         bool? ShowDialog();
 
         void Close();
+
+        Action? CloseCallback { get; set; }
     }
     public interface IContext
     {
@@ -25,34 +35,24 @@ namespace 영상뷰어.Interfaces
     {
         IContext Context { get; set; }
     }
-    public interface IDialogService : IDisposable
+    public interface IDialogService
     {
-        void Register<TDialog>()
-            where TDialog : class, IDialog;
+        void Register(EDialogHostType dialogHostType, Type dialogWindowHostType);
 
-        void Set<TContext>(TContext context) // Show
-            where TContext : IContext;
+        bool CheckActivate(string title);
 
-        void Set<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog;
+        /// <summary>
+        /// 팝업 컨텐츠 설정
+        /// </summary>
+        /// <param name="vm">컨텐츠 뷰모델</param>
+        /// <param name="title">팝업창 타이틀</param>
+        /// <param name="dialogHostType">컨텐츠가 표시될 팝업 다이얼로그 호스트 타입</param>
+        void SetVM(ViewModelBase vm, string? title, double width, double height, EDialogHostType dialogHostType, bool isModal = true);
 
-        bool? SetAwait<TContext>(TContext context) // ShowDialog
-            where TContext : IContext;
-
-        bool? SetAwait<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog;
-
-        void Out<TContext>(TContext context) // Close
-            where TContext : IContext;
-
-        void Out<TContext, TDialog>(TContext context)
-            where TContext : IContext
-            where TDialog : IDialog;
-
+        /// <summary>
+        /// 팝업 다이얼로그 정리
+        /// </summary>
         void Clear();
-        // 나머지 기능이 더 필요할 경우(ex, minimize, maximize ..etc) 추가로 멤버를 작성한다.
     }
 
 }

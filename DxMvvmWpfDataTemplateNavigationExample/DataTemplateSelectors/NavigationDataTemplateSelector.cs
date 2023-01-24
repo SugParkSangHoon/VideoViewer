@@ -16,4 +16,6 @@ namespace DxMvvmWpfDataTemplateNavigationExample.DataTemplateSelectors
             return (DataTemplate)element.FindResource($"{ucName}Template");
         }
     }
+
+ 
 }

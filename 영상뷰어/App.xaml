@@ -4,11 +4,13 @@
              xmlns:local="clr-namespace:영상뷰어"
              xmlns:vm ="clr-namespace:영상뷰어.ViewModels"
              xmlns:cn ="clr-namespace:영상뷰어.Converters"
-             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows"
-             StartupUri="Views/MainWindow.xaml">
+             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows">
+    
     <Application.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/영상뷰어;component/Mappings.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
@@ -16,10 +18,24 @@
             </ResourceDictionary.MergedDictionaries>
             <cn:BitmapToBitmapSourceConverter x:Key="BitmapToBitmapSourceConverter"/>
             <cn:MatToWriteableBitmapConverter x:Key="MatToWriteableBitmapConverter"/>
+            <cn:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
             <vm:ViewModelLocator x:Key="Locator"/>
             <DataTemplate DataType="{x:Type vm:ImageLoadViewModel}">
                 <vw:LoadImageView/>
             </DataTemplate>
+
+            <!--#region Style -->
+            <Style x:Key="ButtonFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion-->
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

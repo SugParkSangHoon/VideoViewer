@@ -61,9 +61,16 @@ namespace 영상뷰어.ViewModels
         public virtual void onButtonLoad()
         {
             //_idialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
-            _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 600, enums.EDialogHostType.BasicType);
+            if(_dialogService.CheckActivate("TEST") is true)
+            {
+
+            }else
+            {
+                _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType);
+            }
+            
            // _idialogService.Set(new ImageLoadViewModel());
-            Messenger.Default.Send(SelectedItem.FilePath);
+            //Messenger.Default.Send(SelectedItem.FilePath);
         }
 
     }

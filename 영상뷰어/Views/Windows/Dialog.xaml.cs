@@ -22,10 +22,27 @@ namespace 영상뷰어.Views.Windows
     {
         public Dialog()
         {
-            InitializeComponent();
             this.DataContext = new PopupViewModel();
+            InitializeComponent();
+            
         }
 
         public Action? CloseCallback { get; set; }
+        private void TitleGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void xCloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (CloseCallback is not null)
+                CloseCallback();
+
+            this.xPopupContent.Content = null;
+            this.Close();
+        }
     }
 }

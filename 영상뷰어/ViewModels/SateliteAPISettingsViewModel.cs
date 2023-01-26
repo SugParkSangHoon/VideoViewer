@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using 영상뷰어.enums;
 using 영상뷰어.Interfaces;
 using 영상뷰어.Models;
 using 영상뷰어.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace 영상뷰어.ViewModels
 {
@@ -133,6 +135,10 @@ namespace 영상뷰어.ViewModels
             //    SatelliteType = "Phone",
             //    UserID = "Park"
             //}); ;
+            var resultViewModel = (SateliteAPIResultViewModel)App.ServiceProvider.GetRequiredService
+                                (ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
+            var mainViewModel = (MainViewModel)App.ServiceProvider.GetRequiredService
+                                (ViewModelSource.GetPOCOType(typeof(MainViewModel)));
             Messenger.Default.Send(SateliteDataList);
             Messenger.Default.Send(false);
         }

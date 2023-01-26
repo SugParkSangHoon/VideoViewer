@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -66,7 +67,9 @@ namespace 영상뷰어.ViewModels
 
             }else
             {
-                _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType);
+                var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
+                    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+                _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType,false);
             }
             
            // _idialogService.Set(new ImageLoadViewModel());

@@ -11,7 +11,7 @@ namespace 영상뷰어.Views.Windows
 {
     public class PopupViewModel : PopupDialogViewModelBase
     {
-        public ViewModelBase? PopupVM { get; set; }
+        //public ViewModelBase? PopupVM { get; set; }
         
         //private IContext _context;
 

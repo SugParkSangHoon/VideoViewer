@@ -41,7 +41,7 @@ namespace 영상뷰어.Services
                     popupDialog.CloseCallback = null;
                     if(popupDialog.DataContext is PopupDialogViewModelBase vm)
                     {
-                        vm.Cleanup();
+                        //vm.Cleanup();
                     }
                     popupDialog.DataContext = null;
                 }

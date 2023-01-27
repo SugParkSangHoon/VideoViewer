@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatelliteApp.Shared.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DxMvvmWpfDataTemplateNavigationExample", "DxMvvmWpfDataTemplateNavigationExample\DxMvvmWpfDataTemplateNavigationExample.csproj", "{B95033D5-855E-4C07-BEE3-977945BA3710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiWindowTest", "MultiWindowTest\MultiWindowTest.csproj", "{57641300-AD18-4183-8674-B14E092744AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiWindowTest", "MultiWindowTest\MultiWindowTest.csproj", "{57641300-AD18-4183-8674-B14E092744AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlExample", "UserControlExample\UserControlExample.csproj", "{600BD76B-9C75-43A9-8F6B-94DAAF85D267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,14 @@ Global
 		{57641300-AD18-4183-8674-B14E092744AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57641300-AD18-4183-8674-B14E092744AD}.Release|x64.ActiveCfg = Release|Any CPU
 		{57641300-AD18-4183-8674-B14E092744AD}.Release|x64.Build.0 = Release|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Debug|x64.Build.0 = Debug|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Release|x64.ActiveCfg = Release|Any CPU
+		{600BD76B-9C75-43A9-8F6B-94DAAF85D267}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

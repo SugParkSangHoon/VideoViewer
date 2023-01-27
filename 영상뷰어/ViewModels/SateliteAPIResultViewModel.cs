@@ -67,8 +67,8 @@ namespace 영상뷰어.ViewModels
 
             }else
             {
-                var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
-                    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+                //var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
+                //    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
                 _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType,false);
             }
             

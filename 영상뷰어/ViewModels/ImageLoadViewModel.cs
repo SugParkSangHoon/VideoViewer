@@ -17,7 +17,7 @@ namespace 영상뷰어.ViewModels
 
         public ImageLoadViewModel()
         {
-            //Messenger.Default.Register<string>(this, OnProcessMat);
+            Messenger.Default.Register<string>(this, OnProcessMat);
             TestText = "Check In?";
         }
         [Command(isCommand: false)]

@@ -73,7 +73,7 @@ namespace 영상뷰어.ViewModels
             }
             
            // _idialogService.Set(new ImageLoadViewModel());
-            //Messenger.Default.Send(SelectedItem.FilePath);
+            Messenger.Default.Send(SelectedItem.FilePath);
         }
 
     }

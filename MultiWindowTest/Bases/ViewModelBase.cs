@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MultiWindowTest.Bases
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase_ : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

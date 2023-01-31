@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MultiWindowTest.Views
+namespace Frame이용한_팝업처리
 {
     /// <summary>
-    /// WindowToOpen.xaml에 대한 상호 작용 논리
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class WindowToOpen : Window, IView
+    public partial class MainWindow : Window
     {
-        public WindowToOpen()
+        public MainWindow()
         {
             InitializeComponent();
         }
-
-        public bool? Open()
-        {
-            //this.Show();
-            return  this.ShowDialog() ?? false;
-        }
-    }
-    public interface IView
-    {
-        bool? Open();
     }
 }

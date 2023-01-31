@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="WindowToOpen" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="NEW Window Opened by MainVidw" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="NEW Window Opened by MainVidw" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        
     </Grid>
 </Window>

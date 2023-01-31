@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using MultiWindowTest.ViewModels;
 using MultiWindowTest.Views;
@@ -20,7 +19,7 @@ namespace MultiWindowTest
         public App()
         {
             Services = ConfigureServices();
-            Ioc.Default.ConfigureServices(Services);
+            //Ioc.Default.ConfigureServices(Services);
             
         }
         public new static App Current => (App)Application.Current;
@@ -29,13 +28,15 @@ namespace MultiWindowTest
         {
             var services = new ServiceCollection();
             services.AddScoped<IView, WindowToOpen>();
+            services.AddTransient<WindowToOpenViewModel>();
             services.AddTransient<MainWindowViewModel>();
             return services.BuildServiceProvider();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            var mainViewModel = Ioc.Default.GetService<MainWindowViewModel>();
+            var mainViewModel = Services.GetService<MainWindowViewModel>();
+                //Ioc.Default.GetService<MainWindowViewModel>();
             var MainView = new MainWindow();
             MainView.DataContext = mainViewModel;
             MainView.ShowDialog();

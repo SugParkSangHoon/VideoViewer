@@ -130,7 +130,8 @@ namespace 영상뷰어.ViewModels
             {
                 NumberID = 1,
                 FileCreateDate = DateTime.Now,
-                FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg",
+                //FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg",
+                FilePath = @"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230113\ir105_ko020lc_202301120000.jpg",
                 SatelliteArea = "test",
                 SatelliteType = "Phone",
                 UserID = "Park"
@@ -144,7 +145,7 @@ namespace 영상뷰어.ViewModels
         }
         public void OnTest()
         {
-            Messenger.Default.Send(true);
+            Messenger.Default.Send(@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230113\ir105_ko020lc_202301120000.jpg");
         }
         #endregion
     }

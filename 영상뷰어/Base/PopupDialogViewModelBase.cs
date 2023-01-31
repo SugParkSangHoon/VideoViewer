@@ -10,13 +10,13 @@ namespace 영상뷰어.Base
 {
     public class PopupDialogViewModelBase : ViewModelBase
     {
-        private ViewModelBase? _popupVM;
-        public ViewModelBase? PopupVM
-        {
-            get { return GetProperty(() => _popupVM); }
-            set { SetProperty(() => _popupVM, value); }
-        }
-        //public virtual ViewModelBase? PopupVM { get; set; }
+        //private ViewModelBase? _popupVM;
+        //public ViewModelBase? PopupVM
+        //{
+        //    get { return GetProperty(() => _popupVM); }
+        //    set { SetProperty(() => _popupVM, value); }
+        //}
+        public virtual ViewModelBase? PopupVM { get; set; }
         //private DelegateCommand? _closeCommand;
         [Command]
         public virtual void Close()

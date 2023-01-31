@@ -1,4 +1,7 @@
-﻿using MultiWindowTest.Bases;
+﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
+using Microsoft.Extensions.DependencyInjection;
+using MultiWindowTest.Bases;
 using MultiWindowTest.Views;
 using System;
 using System.Collections.Generic;
@@ -11,39 +14,49 @@ namespace MultiWindowTest.ViewModels
 {  
     public class MainWindowViewModel : ViewModelBase
     {
-        private string? _title = "Prisim";   
-        public string Title
+        public virtual string Title { get; set; }
+        //private string? _title = "Prisim";   
+        //public string Title
+        //{
+        //    get { return _title = "Prisim"; }
+        //    set { SetProperty(ref _title, value); }
+        //}
+        [Command]
+        public virtual void ShowWindow()
         {
-            get { return _title = "Prisim"; }
-            set { SetProperty(ref _title, value); }
+            var popupVM = App.Current.Services.GetService<WindowToOpenViewModel>();
+            Messenger.Default.Send("Test is messanger");
+            (_view as WindowToOpen).DataContext = popupVM;
+            _view.Open();
+            
         }
         private readonly IView _view;
         public MainWindowViewModel(IView view)
         {
             this._view = view;
-            ShowWindow = new RelayCommand(ExcuteMethod, CanExcuteMoethod);
+            //ShowWindow = new RelayCommand(ExcuteMethod, CanExcuteMoethod);
         }
 
-        private bool CanExcuteMoethod(object obj)
-        {
-            return true;
-        }
+        //private bool CanExcuteMoethod(object obj)
+        //{
+        //    return true;
+        //}
 
-        private void ExcuteMethod(object obj)
-        {
-            _view.Open();
-        }
-        #region MyCommand Command
+        //private void ExcuteMethod(object obj)
+        //{
+        //    _view.Open();
+        //}
+        //#region MyCommand Command
 
-        /// <summary>
-        /// myCommand
-        /// </summary>
+        ///// <summary>
+        ///// myCommand
+        ///// </summary>
 
-        /// <summary>
-        /// Get MyCommand
-        /// </summary>
-        public ICommand ShowWindow { get; set; }    
-        #endregion
+        ///// <summary>
+        ///// Get MyCommand
+        ///// </summary>
+        //public ICommand ShowWindow { get; set; }    
+        //#endregion
 
     }
 }

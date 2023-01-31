@@ -11,6 +11,6 @@
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>-->
     <Grid>
-        <Button Content="Open Window" Height="30" Command="{Binding ShowWindow}"/>
+        <Button Content="Open Window" Height="30" Command="{Binding ShowWindowCommand}"/>
     </Grid>
 </Window>

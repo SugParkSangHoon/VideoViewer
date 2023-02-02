@@ -176,8 +176,8 @@
             </Grid>
 
         </Grid>
-                    <Grid Grid.Row="1">
-                <ContentControl x:Name="xMainContent"
+            <Grid Grid.Row="1" MouseMove="Grid_MouseMove">
+                <ContentControl x:Name="xMainContent"                                
                                 Content="{Binding CurrentDataContext}"
                                 Margin="0"/>
             </Grid>

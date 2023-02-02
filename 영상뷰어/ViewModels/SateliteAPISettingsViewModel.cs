@@ -145,7 +145,9 @@ namespace 영상뷰어.ViewModels
         }
         public void OnTest()
         {
-            Messenger.Default.Send(@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230113\ir105_ko020lc_202301120000.jpg");
+            var ImageLoadViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
+                                (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+            Messenger.Default.Send(ImageLoadViewModel,@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230113\ir105_ko020lc_202301120000.jpg");
         }
         #endregion
     }

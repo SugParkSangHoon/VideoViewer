@@ -10,4 +10,7 @@ namespace 영상뷰어.Interfaces
     public interface ISatelliteRepository : ISatelliteCrudRepository<SatelliteData>
     {
     }
+    public interface IUserRepository : IUserCrudRepository<UserData>
+    {
+    }
 }

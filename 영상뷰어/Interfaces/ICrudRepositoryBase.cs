@@ -19,4 +19,9 @@ namespace 영상뷰어.Interfaces
         //Empty 
         //여기서는 아이디조회가 int 형이라는것을 암시
     }
+    public interface IUserCrudRepository<T> : ICrudRepositoryBase<T, string>
+    {
+        //Empty 
+        //여기서는 아이디조회가 int 형이라는것을 암시
+    }
 }

@@ -10,7 +10,7 @@
              xmlns:enum="clr-namespace:영상뷰어.enums"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="300"
-             DataContext="{Binding Source={StaticResource Locator},Path=SateliteAPISettingsViewModel}">
+             Background="#FFFFFF">
     <UserControl.Resources>
         <convert:RadioBoolToEnum x:Key="CameraTypeConverter"/>
         <ControlTemplate

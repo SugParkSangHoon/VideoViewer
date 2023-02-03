@@ -38,6 +38,8 @@ namespace 영상뷰어
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+                    service.AddTransient(ViewModelSource.GetPOCOType(typeof(LoginViewModel)));
+                    service.AddTransient(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
 
                     service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
                     service.AddSingleton<Interfaces.IDialogService, DialogService>(obj => new DialogService());                    

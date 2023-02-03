@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:영상뷰어"
              xmlns:vm ="clr-namespace:영상뷰어.ViewModels"
              xmlns:cn ="clr-namespace:영상뷰어.Converters"
-             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows">
+             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows"
+             xmlns:system="clr-namespace:System;assembly=mscorlib">
     
     <Application.Resources>
         <ResourceDictionary>
@@ -42,7 +43,9 @@
                 </Setter>
             </Style>
             <!--#endregion-->
-
+            <system:String x:Key="DatabaseConnectString">
+                Server=127.0.0.1; Database=SateliteApp; uid=ParkSangHoon; pwd=tjb4048796;TrustServerCertificate=True
+            </system:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

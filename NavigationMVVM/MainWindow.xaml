@@ -92,7 +92,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
@@ -135,7 +135,7 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <!--<Image Source="" Height="20"/>-->
+                        --><!--<Image Source="" Height="20"/>--><!--
                         <TextBlock Grid.Column="1" x:Name="xTextId" Text="ID" 
                                    MouseDown="xTextId_MouseDown" Style="{StaticResource textHint}"/>
                         <TextBox Grid.Column="1" x:Name="txtId" TextChanged="txtId_TextChanged"
@@ -150,7 +150,7 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <!--<Image Source="" Height="20"/>-->
+                        --><!--<Image Source="" Height="20"/>--><!--
                         <TextBlock Grid.Column="1" x:Name="xTextPassword" Text="Password" 
                                    MouseDown="xTextPassword_MouseDown" Style="{StaticResource textHint}"/>
                         <PasswordBox Grid.Column="1" x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"
@@ -160,7 +160,7 @@
                 <Button Content="Sign In" 
                         Style="{StaticResource mainButton}"/>
             </StackPanel>
-        </Border>
+        </Border>-->
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

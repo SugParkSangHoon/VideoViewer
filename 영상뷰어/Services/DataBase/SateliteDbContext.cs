@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using 영상뷰어.Models;
 
 namespace 영상뷰어.Services.DataBase
@@ -22,7 +23,8 @@ namespace 영상뷰어.Services.DataBase
                 //string connectionString = ConfigurationManager.ConnectionStrings
                 //    ["ConnectionString"].ConnectionString;
                 //string connectionString = "Data Source=LAPTOP-PG7BFL9M;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-                string connectionString = "Server=127.0.0.1; Database=SateliteApp; uid=ParkSangHoon; pwd=tjb4048796;TrustServerCertificate=True";
+                
+                string connectionString = Application.Current.FindResource("DatabaseConnectString") as string;                
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }

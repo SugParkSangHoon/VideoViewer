@@ -34,9 +34,9 @@ namespace 영상뷰어.ViewModels
         {
             get => (SateliteAPIResultViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
         }
-        public virtual ImageLoadViewModel ImageLoadViewModel
+        public virtual SignUpViewModel SignUpViewModel
         {
-            get => (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+            get => (SignUpViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
         }
         //public bool IsBusy { get; set; } = false;
         public MainViewModel()

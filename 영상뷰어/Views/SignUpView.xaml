@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:영상뷰어.Views"
+             xmlns:helper ="clr-namespace:영상뷰어.Helper"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -43,8 +44,11 @@
                                    MouseDown="xTextPassword_MouseDown" 
                                    Style="{StaticResource textHint}"/>
                         <PasswordBox Grid.Column="1" x:Name="txtPassword" 
-                                     PasswordChanged="txtPassword_PasswordChanged"                                     
-                                     Style="{StaticResource textBox}"/>
+                                     PasswordChanged="txtPassword_PasswordChanged"                                 
+                                     Style="{StaticResource textBox}"
+                                     helper:PasswordHelper.Attach="True"
+                                     helper:PasswordHelper.Password=
+                                     "{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Border>
                 <Border BorderBrush="#ACBDAF" BorderThickness="1"

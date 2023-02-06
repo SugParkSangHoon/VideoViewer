@@ -24,14 +24,14 @@
                         Grid.Column="0"
                         Content="{Binding SateliteSearch, Mode=OneTime}"
                         HorizontalAlignment="Stretch"/>
-        <ContentControl x:Name="xSateliteResultView" 
-                        Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}"
-                        Content="{Binding SateliteResultView, Mode=OneTime}"
-                        HorizontalAlignment="Stretch"/>
         <!--<ContentControl x:Name="xSateliteResultView" 
                         Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}"
-                        Content="{Binding SignUpViewModel, Mode=OneTime}"
+                        Content="{Binding SateliteResultView, Mode=OneTime}"
                         HorizontalAlignment="Stretch"/>-->
+        <ContentControl x:Name="xSateliteResultView" 
+                        Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}"
+                        Content="{Binding SignUpViewModel, Mode=OneTime}"
+                        HorizontalAlignment="Stretch"/>
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}">
             <local:BusyView/>
         </Grid>

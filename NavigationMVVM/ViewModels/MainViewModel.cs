@@ -11,14 +11,14 @@ namespace NavigationMVVM.ViewModels
     {
         private readonly NavigationStore _navigateionStroe;
 
-        
+        public bool IsOpen;
         public ViewModelBase CurrentViewModel => _navigateionStroe.CurrentViewModel;
-        //public MainViewModel(NavigationStore navigateionStroe)
-        //{
-        //    _navigateionStroe = navigateionStroe;
+        public MainViewModel(NavigationStore navigateionStroe)
+        {
+            _navigateionStroe = navigateionStroe;
 
-        //    _navigateionStroe.CurrentViewModelChanged += OnCurrentViewModelChanged;
-        //}
+            _navigateionStroe.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
 
         private void OnCurrentViewModelChanged()
         {

@@ -27,10 +27,10 @@
             <cn:BitmapToBitmapSourceConverter x:Key="BitmapToBitmapSourceConverter"/>
             <cn:MatToWriteableBitmapConverter x:Key="MatToWriteableBitmapConverter"/>
             <cn:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
-            <vm:ViewModelLocator x:Key="Locator"/>
-            <DataTemplate DataType="{x:Type vm:ImageLoadViewModel}">
+            <!--<vm:ViewModelLocator x:Key="Locator"/>-->
+            <!--<DataTemplate DataType="{x:Type vm:ImageLoadViewModel}">
                 <vw:LoadImageView/>
-            </DataTemplate>
+            </DataTemplate>-->
 
             <!--#region Style -->
             <Style x:Key="ButtonFocusVisual">

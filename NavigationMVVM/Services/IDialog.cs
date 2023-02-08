@@ -1,13 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NavigationMVVM.ViewModels
+namespace NavigationMVVM.Services
 {
-    public class LoginViewModel :ViewModelBase
+    public interface IDialog
     {
+        void Open();
     }
 }

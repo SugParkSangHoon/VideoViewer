@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.ViewModels
 {
-    public class PeopleListingViewModel
+    public class PeopleListingViewModel : ViewModelBase
     {
+
     }
 }

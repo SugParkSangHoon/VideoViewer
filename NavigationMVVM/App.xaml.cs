@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NavigationMVVM.Services;
 using NavigationMVVM.Stores;
 using NavigationMVVM.ViewModels;
 using System;
@@ -23,8 +24,12 @@ namespace NavigationMVVM
 
             service.AddSingleton<PeopleStore>();
             service.AddSingleton<NavigationStore>();
+            service.AddSingleton<DialogStore>();
+            service.AddSingleton<AccountStore>();
 
-            service.AddTransient<AccountViewModel>();
+            service.AddSingleton<INavigationService>(s => CreateHomeNavigationService(s));
+            service.AddTransient<HomeViewModel>();
+            service.AddTransient<NavigationBarViewModel>();
             service.AddTransient<MainViewModel>();
 
             service.AddSingleton<MainWindow>(s => new MainWindow()
@@ -35,9 +40,24 @@ namespace NavigationMVVM
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            INavigationService initialNavigateionService = _serviceProvider.GetRequiredService<INavigationService>();
+            initialNavigateionService.Navigate();
             MainWindow = _serviceProvider.GetService<MainWindow>();
             MainWindow.Show();
+
             base.OnStartup(e);
         }
+        private INavigationService CreateHomeNavigationService(IServiceProvider s)
+        {
+            return new LayoutNavigationService<HomeViewModel>(
+               _serviceProvider.GetRequiredService<NavigationStore>(),
+               () => _serviceProvider.GetRequiredService<HomeViewModel>(),
+               () => _serviceProvider.GetRequiredService<NavigationBarViewModel>());
+        }
+        private NavigationBarViewModel CreateNavigationBarModel(IServiceProvider serviceProvider)
+        {
+            return new NavigationBarViewModel();
+        }
+
     }
 }

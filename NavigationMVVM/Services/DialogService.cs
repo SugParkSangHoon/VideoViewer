@@ -1,4 +1,5 @@
-﻿using NavigationMVVM.ViewModels;
+﻿using NavigationMVVM.Stores;
+using NavigationMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,19 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.Services
 {
-    public class DialogService<TViewModel> : IDialog where TViewModel : ViewModelBase
+    public class DialogService<TViewModel> : IDialog 
+        where TViewModel : ViewModelBase
     {
-        private readonly TViewModel _viewModel;
-        public DialogService(TViewModel viewModel)
+        private readonly DialogStore _dialogStore;
+        private readonly Func<TViewModel> _createViewModel;
+        public DialogService(DialogStore dialogStor, Func<TViewModel> createViewModel)
         {
-            _viewModel = viewModel;
+            _dialogStore = dialogStor;
+            _createViewModel = createViewModel;
         }
         public void Open()
         {
-            
+            _dialogStore.CurrentViewModel = _createViewModel();
         }       
     }
 }

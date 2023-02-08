@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.ViewModels
 {
-    public class NavigationBarViewModel
+    public class NavigationBarViewModel : ViewModelBase
     {
     }
 }

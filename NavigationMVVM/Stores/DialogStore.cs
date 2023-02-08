@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.Stores
 {
-    public class NavigationStore 
+    public class DialogStore
     {
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel
         {
-            get => _currentViewModel;
-            set
-            {
+            get { return _currentViewModel; }
+            set { 
                 _currentViewModel?.Dispose();
                 _currentViewModel = value;
                 OnCurrentViewModelChanged();
-
             }
         }
+        public bool IsOpen => CurrentViewModel != null;
+
         public event Action CurrentViewModelChanged;
+        public void Close()
+        {
+            CurrentViewModel.Dispose();
+        }
         private void OnCurrentViewModelChanged()
         {
             CurrentViewModelChanged?.Invoke();

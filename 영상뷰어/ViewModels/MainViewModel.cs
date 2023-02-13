@@ -20,23 +20,23 @@ namespace 영상뷰어.ViewModels
         //    get { return GetProperty(()=>_isBusy); }
         //    set { SetProperty(()=>_isBusy, value); }
         //}
-        private bool _isBusy;
-        public bool IsBusy
+        private bool _isOpen;
+        public bool IsOpen
         {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value, "IsBusy"); }
+            get { return _isOpen; }
+            set { SetProperty(ref _isOpen, value, nameof(IsOpen)); }
         }
-        public virtual SateliteAPISettingsViewModel SateliteSearch
+        public virtual MenuBarViewModel MenuBar
         {
-            get=> (SateliteAPISettingsViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
+            get=> (MenuBarViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
         }
-        public virtual SateliteAPIResultViewModel SateliteResultView
-        {
-            get => (SateliteAPIResultViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
-        }
-        public virtual SignUpViewModel SignUpViewModel
+        public virtual ViewModelBase CurrentDialogViewModel
         {
             get => (SignUpViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
+        }
+        public virtual ViewModelBase CurrentViewModel
+        {
+            get => (LoginViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(LoginViewModel)));
         }
         //public bool IsBusy { get; set; } = false;
         public MainViewModel()
@@ -45,11 +45,11 @@ namespace 영상뷰어.ViewModels
             //Mat image = Cv2.ImRead(FilePath, ImreadModes.Color);
 
             Messenger.Default.Register<bool>(this, onSetBusy);
-            //IsBusy = false;
+            IsOpen = false;
         }
         private void onSetBusy(bool obj)
         {
-            IsBusy = obj;
+            IsOpen = obj;
         }
     
     }

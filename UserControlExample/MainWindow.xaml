@@ -46,6 +46,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <!--<ContentControl Content="{Binding ContentView}" Grid.Row="1"/>-->
+        <ContentControl Content="{Binding ContentView}" Grid.Row="1"/>
     </Grid>
 </Window>

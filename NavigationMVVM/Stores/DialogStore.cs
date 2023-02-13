@@ -24,7 +24,7 @@ namespace NavigationMVVM.Stores
         public event Action CurrentViewModelChanged;
         public void Close()
         {
-            CurrentViewModel.Dispose();
+            CurrentViewModel = null;
         }
         private void OnCurrentViewModelChanged()
         {

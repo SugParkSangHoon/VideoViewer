@@ -9,6 +9,6 @@ namespace NavigationMVVM.Models
     public class Account
     {
         public string? Email { get; set; }
-        public string? UsrNam { get; set; }
+        public string? UsrName { get; set; }
     }
 }

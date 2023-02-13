@@ -8,14 +8,15 @@ namespace NavigationMVVM.Services
 {
     public class CompositeNavigationService : INavigationService
     {
-        private readonly IEnumerable<INavigationService> _services;
+        private readonly IEnumerable<INavigationService> _navigationServices;
         public CompositeNavigationService(params INavigationService[] navigationServices)
         {
-            _services = navigationServices;
+            _navigationServices = navigationServices;
         }
+
         public void Navigate()
         {
-            foreach(var navigationService in _services)
+            foreach (INavigationService navigationService in _navigationServices)
             {
                 navigationService.Navigate();
             }

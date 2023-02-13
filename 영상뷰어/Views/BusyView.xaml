@@ -14,7 +14,11 @@
                     Background="White"
                     CornerRadius="5">
                 <StackPanel Width="100" Margin="10">
-                    <ProgressBar Height="10" IsIndeterminate="True" />
+                    <ProgressBar Height="10" IsIndeterminate="True" Background="#F3F3D3">
+                        <ProgressBar.Foreground>
+                            <SolidColorBrush Color="#03C685"/>
+                        </ProgressBar.Foreground>
+                    </ProgressBar>
                     <TextBlock
                             Margin="0,5,0,0"
                             HorizontalAlignment="Center"

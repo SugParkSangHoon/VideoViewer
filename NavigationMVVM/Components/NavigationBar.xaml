@@ -72,7 +72,7 @@
             Margin="10 0 0 0"
             Command="{Binding NavigateAccountCommand}"
             Content="Account"
-            Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}" Cursor="Hand" />
 
         <Button
             Grid.Column="5"

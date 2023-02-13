@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.Stores
 {
-    internal class AccountStore
+    public class AccountStore
     {
         private Account _currentAccount;
         public Account CurrentAccount

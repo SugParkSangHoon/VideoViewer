@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NavigationMVVM">
     <Application.Resources>
-        <!--<ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="/NavigationMVVM;component/Mappings.xaml"/>
-        </ResourceDictionary.MergedDictionaries>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/NavigationMVVM;component/Mappings.xaml"/>
+                <ResourceDictionary Source="Helpers/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

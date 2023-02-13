@@ -6,14 +6,14 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:영상뷰어.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1000"
-             DataContext="{Binding Source={StaticResource Locator},Path=SateliteAPIResultViewModel}">
+             d:DesignHeight="450" d:DesignWidth="1000">
+             <!--DataContext="{Binding Source={StaticResource Locator},Path=SateliteAPIResultViewModel}"-->
     <Border BorderBrush="Black" BorderThickness="1 0 1 0">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="45"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Border BorderThickness="0.2" BorderBrush="Black">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="위성 영상 API 정보" Padding="10"/>
@@ -34,10 +34,14 @@
             </Border>
             
             <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Content="SAVE" Width="117" Height="40" Margin="50 0 0 0" Command="{Binding onSaveCommand}" Cursor="Hand"/>
-                <Button Content="LOAD" Width="117" Height="40" Margin="50 0 0 0" Command="{Binding onButtonLoadCommand}"/>
-                <Button Content="SEARCH" Width="117" Height="40" Margin="50 0 0 0"/>
-                <Button Content="DELETE" Width="117" Height="40" Margin="50 0 0 0" Cursor="Hand"/>
+                <Button Content="SAVE" Width="117" Height="50" Margin="50 5 5 5" Command="{Binding onSaveCommand}" Cursor="Hand"
+                        Style="{StaticResource mainButton}"/>
+                <Button Content="LOAD" Width="117" Height="50" Margin="50 5 5 5" Command="{Binding onButtonLoadCommand}"
+                        Style="{StaticResource mainButton}"/>
+                <Button Content="SEARCH" Width="117" Height="50" Margin="50 5 5 5"
+                        Style="{StaticResource mainButton}" />
+                <Button Content="DELETE" Width="117" Height="50" Margin="50 5 5 5" Cursor="Hand"
+                        Style="{StaticResource mainButton}" />
             </StackPanel>
         </Grid>
     </Border>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace 영상뷰어.Helper
+namespace 영상뷰어.Helpers
 {
     public static class PasswordHelper
     {

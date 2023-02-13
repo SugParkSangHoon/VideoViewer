@@ -31,7 +31,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Background="#272B2f" Grid.RowSpan="2" 
+        <Border Background="#FDFEFE" Grid.RowSpan="2" 
                   CornerRadius="20 0 0 20"/>
         <Grid Grid.Row="0">
             <Image  HorizontalAlignment="Center" 

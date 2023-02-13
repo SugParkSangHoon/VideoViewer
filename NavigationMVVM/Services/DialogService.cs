@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NavigationMVVM.Services
 {
-    public class DialogService<TViewModel> : IDialog 
+    public class DialogService<TViewModel> : INavigationService 
         where TViewModel : ViewModelBase
     {
         private readonly DialogStore _dialogStore;
@@ -18,9 +18,10 @@ namespace NavigationMVVM.Services
             _dialogStore = dialogStor;
             _createViewModel = createViewModel;
         }
-        public void Open()
+
+        public void Navigate()
         {
             _dialogStore.CurrentViewModel = _createViewModel();
-        }       
+        }    
     }
 }

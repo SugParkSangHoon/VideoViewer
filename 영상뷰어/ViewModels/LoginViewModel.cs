@@ -13,7 +13,7 @@ namespace 영상뷰어.ViewModels
         public virtual string UserId { get; set; }
         public LoginViewModel() 
         {
-
+            
         }
     }
 }

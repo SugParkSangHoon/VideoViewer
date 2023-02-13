@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace 영상뷰어.Helper
+namespace 영상뷰어.Helpers
 {
     public class PopUpHelper : ContentControl
     {

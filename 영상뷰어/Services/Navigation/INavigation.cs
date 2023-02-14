@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NavigationMVVM.Services
+namespace 영상뷰어.Services.Navigation
 {
-    public interface IDialog
+    public interface INavigationService
     {
-        void Open();
+        void Navigate();
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.ComponentModel;
 using 영상뷰어.enums;
 using 영상뷰어.Views.Windows;
+using 영상뷰어.Services.Navigation;
 
 namespace 영상뷰어
 {
@@ -34,7 +35,7 @@ namespace 영상뷰어
                 .ConfigureServices((context, service) =>
                 {
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(ShellViewModel)));
-                    service.AddTransient(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
+                    
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPISettingsViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteAPIResultViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
@@ -43,8 +44,10 @@ namespace 영상뷰어
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteSearchViewModel)));
 
+                    service.AddSingleton(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
                     service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
-                    service.AddSingleton<Interfaces.IDialogService, DialogService>(obj => new DialogService());                    
+                    //service.AddSingleton<Interfaces.IDialogService, DialogService>(obj => new DialogService());
+                    service.AddSingleton<INavigation, NavigateionService>(obj => new NavigateionService());
                 })
                 .Build();
             
@@ -54,16 +57,12 @@ namespace 영상뷰어
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
-
-            //var dialogService = ServiceProvider.GetService<DialogService>();
-            //var dialogService = App.ServiceProvider.GetRequiredService(typeof(Interfaces.IDialogService)) as DialogService;
-            //dialogService.Register<Dialog>();
             await host.StartAsync();
             base.OnStartup(e);
 
-            var dialogService = (DialogService)App.ServiceProvider.GetRequiredService
-                                (typeof(Interfaces.IDialogService));
-            dialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
+            //var dialogService = (DialogService)App.ServiceProvider.GetRequiredService
+            //                    (typeof(Interfaces.IDialogService));
+            //dialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
 
             var shellViewModel = (ShellViewModel)App.ServiceProvider.GetRequiredService
                                 (ViewModelSource.GetPOCOType(typeof(ShellViewModel)));

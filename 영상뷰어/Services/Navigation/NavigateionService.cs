@@ -1,18 +1,33 @@
 ﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.ViewModels;
 
 namespace 영상뷰어.Services.Navigation
 {
-    internal class NavigateionService<TViewModel> : INavigationService
-        where TViewModel : ViewModelBase
+    public class NavigateionService :INavigation        
     {
-        public void Navigate()
+        public NavigateionService() { }
+        public void GoBack()
         {
             throw new NotImplementedException();
+        }
+
+        public void Navigate(Type viewModelType)
+        {
+            var context =  (ViewModelBase)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(viewModelType));
+            var mainViewModel = (MainViewModel)App.ServiceProvider.GetService(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
+            mainViewModel.CurrentViewModel = context;
+        }
+
+        public void Navigate<TViewModel1>() where TViewModel1 : ViewModelBase
+        {
+            Navigate(typeof(TViewModel1));
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿<Application x:Class="영상뷰어.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:영상뷰어"
-             xmlns:vm ="clr-namespace:영상뷰어.ViewModels"
-             xmlns:cn ="clr-namespace:영상뷰어.Converters"
-             xmlns:vw ="clr-namespace:영상뷰어.Views.Windows"
+             xmlns:local="clr-namespace:영상뷰어"             
+             xmlns:cn ="clr-namespace:영상뷰어.Converters"             
              xmlns:system="clr-namespace:System;assembly=mscorlib">
     
     <Application.Resources>
@@ -17,13 +15,12 @@
                 <ResourceDictionary Source="Styles/Image.xaml" />
                 <ResourceDictionary Source="Styles/Text.xaml" />
                 <ResourceDictionary Source="Styles/Button.xaml" />
-                
-                
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
             <cn:BitmapToBitmapSourceConverter x:Key="BitmapToBitmapSourceConverter"/>
             <cn:MatToWriteableBitmapConverter x:Key="MatToWriteableBitmapConverter"/>
             <cn:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>

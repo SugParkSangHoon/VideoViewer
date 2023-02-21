@@ -21,12 +21,11 @@ namespace 영상뷰어.ViewModels
     [POCOViewModel]
     public class SateliteAPIResultViewModel :ViewModelBase
     {
-        private readonly Interfaces.IDialogService _dialogService;
+        
         public virtual ObservableCollection<SatelliteData>? SateliteItems { get; set; }
         public virtual SatelliteData SelectedItem { get; set; }
-        public SateliteAPIResultViewModel(Interfaces.IDialogService service)
-        {
-            _dialogService = service;
+        public SateliteAPIResultViewModel()
+        {        
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
         }
 
@@ -58,23 +57,23 @@ namespace 영상뷰어.ViewModels
                 }               
             }
         }
-        [Command]
-        public virtual void onButtonLoad()
-        {
-            //_idialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
-            if(_dialogService.CheckActivate("TEST") is true)
-            {
+        //[Command]
+        //public virtual void onButtonLoad()
+        //{
+        //    //_idialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
+        //    if(_dialogService.CheckActivate("TEST") is true)
+        //    {
 
-            }else
-            {
-                //var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
-                //    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
-                _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType,false);
-            }
+        //    }else
+        //    {
+        //        //var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
+        //        //    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+        //        _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType,false);
+        //    }
             
-           // _idialogService.Set(new ImageLoadViewModel());
-            Messenger.Default.Send(SelectedItem.FilePath);
-        }
+        //   // _idialogService.Set(new ImageLoadViewModel());
+        //    Messenger.Default.Send(SelectedItem.FilePath);
+        //}
 
     }
 }

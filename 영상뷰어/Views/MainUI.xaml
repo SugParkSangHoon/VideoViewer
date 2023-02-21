@@ -21,20 +21,28 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnMenu" Content="☰" FontSize="20" Grid.Row="0"
+                Background="Transparent" Foreground="Black" Margin="5"
+                Command="{Binding onMenuOpenCommand}"/>
         <ContentControl x:Name="xMenuBar"
-                        Grid.Column="0" 
+                        Grid.Column="0" Grid.Row="1" 
+                        Visibility="{Binding IsMenuOpen ,Converter={StaticResource BooleanToVisibilityConverter}}"
                         Content="{Binding MenuBar, Mode=OneTime}"
                         HorizontalAlignment="Stretch"/>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1">
+        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            <ContentControl Content="{Binding CurrentViewModel}" />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <helper:Dialog Panel.ZIndex="1" IsOpen="{Binding IsOpen}">
                 <ContentControl Content="{Binding CurrentDialogViewModel}"/>
             </helper:Dialog>
         </Grid>
         
-        <Grid Grid.Column="1">
-            <ContentControl Content="{Binding CurrentViewModel}" />
-        </Grid>
+
         <!--<ContentControl x:Name="xSateliteResultView" 
                         Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}"
                         Content="{Binding SateliteResultView, Mode=OneTime}"

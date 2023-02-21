@@ -35,15 +35,14 @@
                   CornerRadius="20 0 0 20"/>
         <Grid Grid.Row="0">
             <Image  HorizontalAlignment="Center" 
-               Source="../Images/img_product.png" 
-               Style="{StaticResource ImageStyle}"/>
-            <TextBlock Text="TEST"
-                       Style="{StaticResource TextStyle}"/>
+               Source="../Images/free-icon-satellite-3398987.png" 
+               Style="{StaticResource ImageStyle}" Margin="5" />
+            
         </Grid>
         
         <StackPanel Height="300" Width="230" Grid.Row="1">
             <RadioButton Style="{StaticResource BtnStyle}"
-                    Command="{Binding }"
+                    Command="{Binding onHomeNavigateCommand }"
                     IsChecked="True">
                 <Grid>
                     <Image Source="../Images/img_home.png"
@@ -54,23 +53,23 @@
             </RadioButton>
             
             <RadioButton Style="{StaticResource BtnStyle}"
-                    Command="{Binding }"
+                    Command="{Binding onLoginNavigateCommand}"
                     IsChecked="False">
                 <Grid>
-                    <Image Source="../Images/img_order.png"
+                    <Image Source="../Images/img_customer.png"
                            Style="{StaticResource ImageStyle}"/>
-                    <TextBlock Text="Home"
+                    <TextBlock Text="Login"
                                Style="{StaticResource TextStyle}"/>
                 </Grid>
             </RadioButton>
             
             <RadioButton Style="{StaticResource BtnStyle}"
-                    Command="{Binding }"
+                    Command="{Binding onSateliteSearchCommand}"
                     IsChecked="False">
                 <Grid>
-                    <Image Source="../Images/img_setting.png"
+                    <Image Source="../Images/loupe.png"
                            Style="{StaticResource ImageStyle}"/>
-                    <TextBlock Text="Home"
+                    <TextBlock Text="Setting"
                                Style="{StaticResource TextStyle}"/>
                 </Grid>
             </RadioButton>

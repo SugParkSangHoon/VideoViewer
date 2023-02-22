@@ -43,6 +43,7 @@ namespace 영상뷰어
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
                     service.AddTransient(ViewModelSource.GetPOCOType(typeof(SateliteSearchViewModel)));
+                    service.AddTransient(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
 
                     service.AddSingleton(ViewModelSource.GetPOCOType(typeof(MainViewModel)));
                     service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());

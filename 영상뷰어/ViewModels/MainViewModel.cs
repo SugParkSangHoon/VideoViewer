@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.Stores;
 
 namespace 영상뷰어.ViewModels
 {
     [POCOViewModel]
-    public class MainViewModel :ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         //private bool _isBusy;
         //public bool IsBusy
@@ -29,9 +30,20 @@ namespace 영상뷰어.ViewModels
         //public virtual bool IsOpen { get; set; } = true;
         public virtual MenuBarViewModel MenuBar
         {
-            get=> (MenuBarViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
+            get => (MenuBarViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
         }
-        public virtual ViewModelBase CurrentDialogViewModel { get; set; }
+        private ViewModelBase _currentDialogViewModel;
+        public ViewModelBase CurrentDialogViewModel
+        {
+            get => _currentDialogViewModel;
+            set
+            {
+                IsOpen = true;
+                _currentDialogViewModel = value;
+                SetProperty(ref _currentDialogViewModel, value, nameof(CurrentDialogViewModel));
+            }
+        }
+
 
         //public virtual ViewModelBase CurrentViewModel
         //{
@@ -44,8 +56,23 @@ namespace 영상뷰어.ViewModels
             //string FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg";
             //Mat image = Cv2.ImRead(FilePath, ImreadModes.Color);
             //CurrentViewModel = (LoginViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(LoginViewModel)));
-            Messenger.Default.Register<bool>(this, onSetBusy);            
+            CurrentViewModel = (HomeViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
+            Messenger.Default.Register<DialogDataStore>(this, onDialogRecvData);
+            //Messenger.Default.Unregister<DialogDataStore>(this, onDialogRecvData);
+            //CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
         }
+
+        private void onDialogRecvData(DialogDataStore obj)
+        {
+            switch (obj.DilaogType)
+            {
+                case enums.eDialog.ImageLode:
+                    CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+                    break;
+            }
+
+        }
+
         private void onSetBusy(bool obj)
         {
             IsOpen = obj;
@@ -54,7 +81,7 @@ namespace 영상뷰어.ViewModels
         public virtual void onMenuOpen()
         {
             IsMenuOpen = !IsMenuOpen;
-            //IsOpen = !IsOpen;
+            IsOpen = !IsOpen;
         }
 
     }

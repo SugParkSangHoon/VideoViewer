@@ -69,7 +69,7 @@
                 <Grid>
                     <Image Source="../Images/loupe.png"
                            Style="{StaticResource ImageStyle}"/>
-                    <TextBlock Text="Setting"
+                    <TextBlock Text="Satelite Search"
                                Style="{StaticResource TextStyle}"/>
                 </Grid>
             </RadioButton>

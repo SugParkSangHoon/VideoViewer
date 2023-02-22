@@ -14,6 +14,7 @@ using 영상뷰어.Interfaces;
 using 영상뷰어.Models;
 using 영상뷰어.Services;
 using 영상뷰어.Services.DataBase;
+using 영상뷰어.Stores;
 using 영상뷰어.Views.Windows;
 
 namespace 영상뷰어.ViewModels
@@ -57,23 +58,17 @@ namespace 영상뷰어.ViewModels
                 }               
             }
         }
-        //[Command]
-        //public virtual void onButtonLoad()
-        //{
-        //    //_idialogService.Register(enums.EDialogHostType.BasicType, typeof(Views.Windows.Dialog));
-        //    if(_dialogService.CheckActivate("TEST") is true)
-        //    {
+        [Command]
+        public virtual void onButtonLoad()
+        {
+            var dialogData = new DialogDataStore();
+            if (SelectedItem != null)
+                dialogData.ImageFilePath = SelectedItem.FilePath;
 
-        //    }else
-        //    {
-        //        //var resultViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService
-        //        //    (ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
-        //        _dialogService.SetVM(new ImageLoadViewModel(), "TEST", 500, 800, enums.EDialogHostType.BasicType,false);
-        //    }
-            
-        //   // _idialogService.Set(new ImageLoadViewModel());
-        //    Messenger.Default.Send(SelectedItem.FilePath);
-        //}
+            dialogData.DilaogType = enums.eDialog.ImageLode;
+
+            Messenger.Default.Send(dialogData);
+        }
 
     }
 }

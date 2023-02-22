@@ -21,7 +21,7 @@ namespace 영상뷰어.ViewModels
         [Command]
         public virtual void onHomeNavigate()
         {
-            
+            _navigation.Navigate<HomeViewModel>();
         }
         [Command]
         public virtual void onLoginNavigate()

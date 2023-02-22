@@ -26,6 +26,9 @@
     <DataTemplate DataType="{x:Type dataContext:MenuBarViewModel}">
         <views:MenuBar/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type dataContext:HomeViewModel}">
+        <views:HomeView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type dataContext:SateliteSearchViewModel}">
         <viewPages:SateliteSearchView/>
     </DataTemplate>

@@ -41,7 +41,7 @@
         </Grid>
         
         <StackPanel Height="300" Width="230" Grid.Row="1">
-            <RadioButton Style="{StaticResource BtnStyle}"
+            <RadioButton Style="{StaticResource BtnStyle}" 
                     Command="{Binding onHomeNavigateCommand }"
                     IsChecked="True">
                 <Grid>
@@ -52,7 +52,7 @@
                 </Grid>
             </RadioButton>
             
-            <RadioButton Style="{StaticResource BtnStyle}"
+            <RadioButton Style="{StaticResource BtnStyle}" 
                     Command="{Binding onLoginNavigateCommand}"
                     IsChecked="False">
                 <Grid>

@@ -51,7 +51,7 @@ namespace 영상뷰어.ViewModels
             //string FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg";
             //Mat image = Cv2.ImRead(FilePath, ImreadModes.Color);
             //CurrentViewModel = (LoginViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(LoginViewModel)));
-            CurrentViewModel = (SignUpViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
+            CurrentViewModel = (HomeViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
             Messenger.Default.Register<DialogDataStore>(this, onDialogRecvData);
 
             //CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
@@ -66,6 +66,9 @@ namespace 영상뷰어.ViewModels
                 case enums.eDialog.ImageLode:
                     CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
                     Messenger.Default.Send<string>(@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230223\sw038_ko020lc_202302220000.jpg");
+                    break;
+                case enums.eDialog.SingnUp:
+                    CurrentDialogViewModel = (SignUpViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
                     break;
             }
 

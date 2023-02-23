@@ -16,6 +16,7 @@ using System.ComponentModel;
 using 영상뷰어.enums;
 using 영상뷰어.Views.Windows;
 using 영상뷰어.Services.Navigation;
+using 영상뷰어.Stores;
 
 namespace 영상뷰어
 {
@@ -49,6 +50,7 @@ namespace 영상뷰어
                     service.AddSingleton<ISettingService, SettingService>(obj => new SettingService());
                     //service.AddSingleton<Interfaces.IDialogService, DialogService>(obj => new DialogService());
                     service.AddSingleton<INavigation, NavigateionService>(obj => new NavigateionService());
+                    service.AddSingleton<AccountStore>();
                 })
                 .Build();
             

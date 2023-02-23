@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.Helpers;
 using 영상뷰어.Models;
 using 영상뷰어.Services.DataBase;
 
@@ -31,10 +32,11 @@ namespace 영상뷰어.ViewModels
                 var logFactory = serviceProvider.GetService<ILoggerFactory>();
                 var isSuecess = context.Database.EnsureCreated();
                 var repository = new UserRepository(context,logFactory);
+                var encrypedPassword = new PasswordEncryptionHelper(UserPassword).GetSHAEncryptedPassword();
                 var userData = new UserData
                 {
                     Id = UserId,
-                    Password = UserPassword,
+                    Password = encrypedPassword,
                     Email = UserEmail,
                     PhoneNumber = UserPhoneNumber,
                     JoinDatetime = DateTime.Now

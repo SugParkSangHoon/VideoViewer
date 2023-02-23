@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:영상뷰어.Views"
+             xmlns:helper ="clr-namespace:영상뷰어.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -56,7 +57,7 @@
                                    MouseDown="xTextId_MouseDown" Style="{StaticResource textHint}"/>
                         <TextBox Grid.Column="1" x:Name="txtId" TextChanged="txtId_TextChanged"
                                  Style="{StaticResource textBox}"
-                                 Text="{Binding UserID}"/>
+                                 Text="{Binding UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Border>
 
@@ -70,13 +71,17 @@
                         <!--<Image Source="" Height="20"/>-->
                         <TextBlock Grid.Column="1" x:Name="xTextPassword" Text="Password" 
                                    MouseDown="xTextPassword_MouseDown" Style="{StaticResource textHint}"/>
-                        <PasswordBox Grid.Column="1" x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"
-                                 Style="{StaticResource textBox}"
-                                 />
+                        <PasswordBox Grid.Column="1" x:Name="txtPassword" 
+                                     PasswordChanged="txtPassword_PasswordChanged"                                 
+                                     Style="{StaticResource textBox}"
+                                     helper:PasswordHelper.Attach="True"
+                                     helper:PasswordHelper.Password=
+                                     "{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Border>
                 <Button Content="Sign In" 
-                        Style="{StaticResource mainButton}"/>
+                        Style="{StaticResource mainButton}"
+                        Command="{Binding onSigInCommand}" />
             </StackPanel>
         </Border>
     </Grid>

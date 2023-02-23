@@ -36,8 +36,13 @@
 
             </Canvas>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Hellow World" 
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding UserId}" 
                            Style="{StaticResource TitleText}"/>
+                    <TextBlock Text=" Hellow World" 
+                           Style="{StaticResource TitleText}"/>
+                </StackPanel>
+                
                 <TextBlock Text="Welcome to the video image API lookup program." Opacity="0.8" Margin="20 30 20 30" 
                            Style="{StaticResource NormalText}" />
 

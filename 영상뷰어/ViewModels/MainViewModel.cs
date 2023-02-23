@@ -14,52 +14,49 @@ namespace 영상뷰어.ViewModels
 {
     [POCOViewModel]
     public class MainViewModel : ViewModelBase
-    {
-        //private bool _isBusy;
-        //public bool IsBusy
-        //{
-        //    get { return GetProperty(()=>_isBusy); }
-        //    set { SetProperty(()=>_isBusy, value); }
-        //}
-        private bool _isOpen;
+    {                
         public bool IsOpen
         {
-            get { return _isOpen; }
-            set { SetProperty(ref _isOpen, value, nameof(IsOpen)); }
+            get => GetValue<bool>(nameof(IsOpen));
+            set => SetValue(value, nameof(IsOpen));
         }
         //public virtual bool IsOpen { get; set; } = true;
         public virtual MenuBarViewModel MenuBar
         {
             get => (MenuBarViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(MenuBarViewModel)));
-        }
-        private ViewModelBase _currentDialogViewModel;
+        }         
         public ViewModelBase CurrentDialogViewModel
         {
-            get => _currentDialogViewModel;
+            get => GetValue<ViewModelBase>(nameof(CurrentDialogViewModel));
             set
             {
-                IsOpen = true;
-                _currentDialogViewModel = value;
-                SetProperty(ref _currentDialogViewModel, value, nameof(CurrentDialogViewModel));
+                IsOpen = true;                
+                SetValue(value, nameof(CurrentDialogViewModel));
             }
         }
+        public ViewModelBase CurrentViewModel
+        {
+            get => GetValue< ViewModelBase>(nameof(CurrentViewModel));
+            set
+            {
+                IsOpen = false;
+                IsMenuOpen = false;
+                SetValue(value, nameof(CurrentViewModel));
 
-
-        //public virtual ViewModelBase CurrentViewModel
-        //{
-        //    get => (SateliteSearchViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteSearchViewModel)));
-        //}
-        public virtual ViewModelBase CurrentViewModel { get; set; }
+            }
+        }        
         public virtual bool IsMenuOpen { get; set; } = false;
         public MainViewModel()
         {
             //string FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg";
             //Mat image = Cv2.ImRead(FilePath, ImreadModes.Color);
             //CurrentViewModel = (LoginViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(LoginViewModel)));
-            CurrentViewModel = (HomeViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
+            CurrentViewModel = (SignUpViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SignUpViewModel)));
             Messenger.Default.Register<DialogDataStore>(this, onDialogRecvData);
-            //Messenger.Default.Unregister<DialogDataStore>(this, onDialogRecvData);
+
             //CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+            //Messenger.Default.Send<string>(@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230223\sw038_ko020lc_202302220000.jpg");
+            //IsOpen = true;
         }
 
         private void onDialogRecvData(DialogDataStore obj)
@@ -68,6 +65,7 @@ namespace 영상뷰어.ViewModels
             {
                 case enums.eDialog.ImageLode:
                     CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));
+                    Messenger.Default.Send<string>(@"F:\wpf\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230223\sw038_ko020lc_202302220000.jpg");
                     break;
             }
 
@@ -81,7 +79,7 @@ namespace 영상뷰어.ViewModels
         public virtual void onMenuOpen()
         {
             IsMenuOpen = !IsMenuOpen;
-            IsOpen = !IsOpen;
+            //IsOpen = !IsOpen;
         }
 
     }

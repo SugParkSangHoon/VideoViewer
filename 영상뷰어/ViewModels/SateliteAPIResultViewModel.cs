@@ -61,13 +61,16 @@ namespace 영상뷰어.ViewModels
         [Command]
         public virtual void onButtonLoad()
         {
-            var dialogData = new DialogDataStore();
+            var dialogData = new SateliteDataStore();
+
             if (SelectedItem != null)
-                dialogData.ImageFilePath = SelectedItem.FilePath;
+                dialogData.ImageFilePath = SelectedItem.FilePath;            
 
-            dialogData.DilaogType = enums.eDialog.ImageLode;
-
-            Messenger.Default.Send(dialogData);
+            Messenger.Default.Send(new DialogDataStore
+            {
+                DilaogType = enums.eDialog.ImageLode,
+                ResponseData = dialogData
+        });
         }
 
     }

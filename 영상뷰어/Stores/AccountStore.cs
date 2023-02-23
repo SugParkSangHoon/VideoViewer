@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.Interfaces;
 using 영상뷰어.Models;
 
 namespace 영상뷰어.Stores
 {
-    public class AccountStore
+    public class AccountStore : IDataStore
     {
         private UserData _currentAccount;
         public UserData CurrentAccount

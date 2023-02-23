@@ -82,6 +82,7 @@
                     </ControlTemplate.Resources>
                     <Grid Background="{TemplateBinding Background}" Visibility="{TemplateBinding IsOpen, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Border
+                            
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             BorderBrush="{TemplateBinding BorderBrush}"

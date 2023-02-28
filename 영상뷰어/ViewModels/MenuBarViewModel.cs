@@ -8,16 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using 영상뷰어.Services.Navigation;
 using Microsoft.Extensions.DependencyInjection;
+using 영상뷰어.Stores;
 
 namespace 영상뷰어.ViewModels
 {
     public class MenuBarViewModel :ViewModelBase
     {
+        
         private readonly INavigation _navigation;
-        public MenuBarViewModel(INavigation navigation)
+        private readonly AccountStore _accountStore;
+        public MenuBarViewModel(INavigation navigation,AccountStore accountStore)
         {
             _navigation = navigation;
+            _accountStore = accountStore;
+            _accountStore.CurrentAccountChanged += OnCurrentAccountChange;
         }
+
+        private void OnCurrentAccountChange()
+        {
+            IsLogin = _accountStore.IsLoggedIn;
+        }
+
+        public virtual bool IsLogin { get; set; }
+
         [Command]
         public virtual void onHomeNavigate()
         {

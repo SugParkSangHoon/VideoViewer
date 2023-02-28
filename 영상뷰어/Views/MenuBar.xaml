@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:영상뷰어.Views"
              xmlns:menu ="clr-namespace:영상뷰어.Styles"             
+             xmlns:convert ="clr-namespace:영상뷰어.Converters"
              mc:Ignorable="d"              
              d:DesignHeight="400" d:DesignWidth="230">
     <UserControl.Resources>
+        <convert:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <convert:BoolToVisibilityConverter
+                x:Key="ReversBoolToVisibilityConverter"
+                FalseValue="Visible"
+                TrueValue="Collapsed" />
         <Style x:Key="MenuButton" TargetType="Control">
             <Setter Property="Template">
                 <Setter.Value>
@@ -54,7 +60,9 @@
             
             <RadioButton Style="{StaticResource BtnStyle}" 
                     Command="{Binding onLoginNavigateCommand}"
-                    IsChecked="False">
+                    IsChecked="False"
+                    Visibility="{Binding IsLogin, 
+                    Converter={StaticResource ReversBoolToVisibilityConverter}, Mode=OneWay}">
                 <Grid>
                     <Image Source="../Images/img_customer.png"
                            Style="{StaticResource ImageStyle}"/>
@@ -65,7 +73,9 @@
             
             <RadioButton Style="{StaticResource BtnStyle}"
                     Command="{Binding onSateliteSearchCommand}"
-                    IsChecked="False">
+                    IsChecked="False"
+                    Visibility="{Binding IsLogin, 
+                    Converter={StaticResource BoolToVisibilityConverter }, Mode=OneWay}">
                 <Grid>
                     <Image Source="../Images/loupe.png"
                            Style="{StaticResource ImageStyle}"/>

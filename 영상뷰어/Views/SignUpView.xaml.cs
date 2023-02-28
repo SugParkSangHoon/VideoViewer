@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,13 @@ namespace 영상뷰어.Views
         private void txtPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtPhoneNumber.Text) && txtPhoneNumber.Text.Length > 0)
+            {
                 xPhoneNumber.Visibility = Visibility.Collapsed;
+                if (!Regex.IsMatch(txtPhoneNumber.Text, @"^01([0|1|6|7|8|9]?)([0-9]{3,4})([0-9]{4})$"))
+                {
+
+                }
+            }                
             else
                 xPhoneNumber.Visibility = Visibility.Visible;
         }
@@ -71,7 +78,11 @@ namespace 영상뷰어.Views
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
+            {
                 xEmail.Visibility = Visibility.Collapsed;
+
+            }
+                
             else
                 xEmail.Visibility = Visibility.Visible;
         }

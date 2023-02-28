@@ -14,6 +14,7 @@ using 영상뷰어.Interfaces;
 using 영상뷰어.Models;
 using 영상뷰어.Services;
 using Microsoft.Extensions.DependencyInjection;
+using 영상뷰어.Stores;
 
 namespace 영상뷰어.ViewModels
 {
@@ -22,22 +23,7 @@ namespace 영상뷰어.ViewModels
     public class SateliteAPISettingsViewModel : ViewModelBase
     {
         private readonly ISettingService _settingServices;
-        //private eCameraType _cameraType;
-        //private eCameraArea _cameraArea;
-        //private bool _isSelect;                
-        //public bool IsSelected
-        //{
-        //    get { return _isSelect; }
-        //    set { _isSelect = value; RaisePropertyChanged("IsSelected"); }
-        //}
-        //public eCameraType CameraType
-        //{
-        //    get { return _cameraType; }
-        //    set {
-        //        _settingServices.SeteliteAPISetting.CameraType = value; 
-        //        SetValue(ref _cameraType, value);
-        //    }
-        //}
+        private readonly AccountStore _accountStore;
         public virtual bool IsSelected { get; set; }    
         public virtual eCameraType CameraType {
             get => _settingServices.SeteliteAPISetting.CameraType;
@@ -48,64 +34,18 @@ namespace 영상뷰어.ViewModels
             set => _settingServices.SeteliteAPISetting.CameraArea = value;
         }
         public virtual DateTime YesterdayDateTIme { get; set; } 
-        //public eCameraArea CameraArea
-        //{
-        //    get => _settingServices.SeteliteAPISetting.CameraArea;
-        //    set
-        //    {
-        //        _settingServices.SeteliteAPISetting.CameraArea = value;
-        //        SetValue(ref _cameraArea, value);
-        //    }
-        ////}
-        //private DateTime _yesterdayDateTime; 
-        //public DateTime YesterdayDateTIme
-        //{
-        //    get => _yesterdayDateTime;
-        //    set {
-        //        _yesterdayDateTime = value; 
-        //        RaisePropertyChanged("YesterdayDateTIme");
-        //        _settingServices.SeteliteAPISetting.Datetime = value.ToString("yyyyMMdd");                
-        //    }
-        //}
 
-        //Test
-        public SateliteAPISettingsViewModel(ISettingService settingservice)
+        public SateliteAPISettingsViewModel(ISettingService settingservice, AccountStore accountStore)
         {
             _settingServices = settingservice;
+            _accountStore = accountStore;
+
             CameraType = _settingServices.SeteliteAPISetting.CameraType;
             CameraArea = _settingServices.SeteliteAPISetting.CameraArea;
-            YesterdayDateTIme = DateTime.ParseExact(_settingServices.SeteliteAPISetting.Datetime,"yyyyMMdd", CultureInfo.InvariantCulture);
-            
+            YesterdayDateTIme = DateTime.ParseExact(_settingServices.SeteliteAPISetting.Datetime,"yyyyMMdd", CultureInfo.InvariantCulture);            
         }
 
-        #region Requset Command
-
-        /// <summary>
-        /// myCommand
-        /// </summary>
-        //private DelegateCommand myCommand = null;
-
-        ///// <summary>
-        ///// Get Requset
-        ///// </summary>
-        //public ICommand Requset 
-        //{
-        //    get
-        //    {
-        //        if (this.myCommand == null)
-        //        {
-        //            this.myCommand = new DelegateCommand(() => this.OnRequset());
-        //        }
-
-        //        return this.myCommand;
-        //    }
-        //}
-        //#endregion
-
-        //#region OnRequset
-        /// <summary>
-        /// execute OnRequset
-        /// </summary>
+        #region Requset Command  
         public virtual async void OnRequset()
         {
             Messenger.Default.Send(true);

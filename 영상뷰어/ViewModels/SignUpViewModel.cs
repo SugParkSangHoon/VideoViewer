@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using 영상뷰어.Helpers;
 using 영상뷰어.Models;
 using 영상뷰어.Services.DataBase;
+using 영상뷰어.Services.Navigation;
 
 namespace 영상뷰어.ViewModels
 {
@@ -20,8 +21,12 @@ namespace 영상뷰어.ViewModels
         public virtual string? UserId {  get; set; }
         public virtual string? UserPassword { get; set; }
         public virtual string? UserEmail { get; set; }
-        public virtual string? UserPhoneNumber { get; set; } 
-        public SignUpViewModel() { }
+        public virtual string? UserPhoneNumber { get; set; }
+        private readonly INavigation _navigation;
+        public SignUpViewModel(INavigation navigation) 
+        {
+            _navigation = navigation;
+        }
 
         [Command]
         public virtual async Task onSignUpOk()
@@ -41,14 +46,18 @@ namespace 영상뷰어.ViewModels
                     PhoneNumber = UserPhoneNumber,
                     JoinDatetime = DateTime.Now
                 };
-                await repository.AddAsync(userData);
+                var result = await repository.AddAsync(userData);
+                if(result.Id != null)
+                {
+                    _navigation.Navigate<LoginViewModel>();
+                }
             }
         }
 
         [Command]
         public virtual void onSignUpCancel()
         {
-
+            _navigation.Navigate<HomeViewModel>();
         }
     }
 }

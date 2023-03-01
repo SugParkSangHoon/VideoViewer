@@ -26,18 +26,28 @@ namespace 영상뷰어.ViewModels
         public virtual ObservableCollection<SatelliteData>? SateliteItems { get; set; }
         public virtual SatelliteData SelectedItem { get; set; }
         public SateliteAPIResultViewModel()
-        {        
+        {
+            SateliteItems = new ObservableCollection<SatelliteData>();
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
+            
+            TestItemAdd();
         }
 
         private void ReceiveData(ObservableCollection<SatelliteData> obj)
         {
             SateliteItems = obj;
         }
-        [Command]
-        public virtual void SelectionChanged(object selectedItem)
+        private void TestItemAdd()
         {
-
+            SateliteItems.Add(new SatelliteData
+            {
+                NumberID = 1,
+                FileCreateDate = DateTime.Now,
+                FilePath = $@"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230228\ir105_ko020lc_202302270000.jpg",
+                SatelliteArea = "ea",
+                SatelliteType = "ko",
+                UserID = "test"
+            });
         }
         public  virtual async Task onSave()
         {
@@ -70,7 +80,20 @@ namespace 영상뷰어.ViewModels
             {
                 DilaogType = enums.eDialog.ImageLode,
                 ResponseData = dialogData
-        });
+            });
+        }
+        [Command]
+        public void onSearchLoad()
+        {
+            Messenger.Default.Send(new DialogDataStore
+            {
+                DilaogType = enums.eDialog.Search,                
+            });
+        }
+        [Command]
+        public void onSeltedDelete()
+        {
+
         }
 
     }

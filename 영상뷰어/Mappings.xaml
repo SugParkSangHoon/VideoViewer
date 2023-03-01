@@ -11,6 +11,9 @@
     <DataTemplate DataType="{x:Type dataContext:SateliteAPIResultViewModel}">
         <views:SateliteAPIResultView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type dataContext:SateliteAPISearchViewModel}">
+        <views:SateliteAPISearchView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type dataContext:SateliteAPISettingsViewModel}">
         <views:SerchBar/>
     </DataTemplate>

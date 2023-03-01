@@ -23,7 +23,7 @@ namespace 영상뷰어.ViewModels
     public class SateliteAPISettingsViewModel : ViewModelBase
     {
         private readonly ISettingService _settingServices;
-        private readonly AccountStore _accountStore;
+        
         public virtual bool IsSelected { get; set; }    
         public virtual eCameraType CameraType {
             get => _settingServices.SeteliteAPISetting.CameraType;
@@ -35,10 +35,9 @@ namespace 영상뷰어.ViewModels
         }
         public virtual DateTime YesterdayDateTIme { get; set; } 
 
-        public SateliteAPISettingsViewModel(ISettingService settingservice, AccountStore accountStore)
+        public SateliteAPISettingsViewModel(ISettingService settingservice)
         {
-            _settingServices = settingservice;
-            _accountStore = accountStore;
+            _settingServices = settingservice;            
 
             CameraType = _settingServices.SeteliteAPISetting.CameraType;
             CameraArea = _settingServices.SeteliteAPISetting.CameraArea;
@@ -60,7 +59,7 @@ namespace 영상뷰어.ViewModels
                 SatelliteData model = new SatelliteData();
                 model.FileCreateDate = DateTime.Now;
                 model.FilePath = file;
-                model.UserID = "Park";
+                model.UserID = _settingServices.AccountStore.CurrentAccount.Id;
                 model.SatelliteArea = _settingServices.SeteliteAPISetting.CameraArea.ToString();
                 model.SatelliteType = _settingServices.SeteliteAPISetting.CameraType.ToString();
                 SateliteDataList.Add(model);

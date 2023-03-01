@@ -4,25 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using 영상뷰어.Services.Setting;
+using 영상뷰어.Stores;
 
 namespace 영상뷰어.Interfaces
 {
     public interface ISettingService
     {
         public SeteliteAPISetting SeteliteAPISetting { get; }
+        public AccountStore AccountStore { get; }
         public void SaveSetting();
     }
     public class SettingService : ISettingService
     {
-        private SeteliteAPISetting? _seteliteAPISetting;
+        private readonly SeteliteAPISetting? _seteliteAPISetting;
+        private readonly AccountStore? _accountStore;
         public SettingService()
         {
             _seteliteAPISetting = new SeteliteAPISetting();
+            _accountStore = new AccountStore();
             this.DefaultSetting();
         }
 
         public SeteliteAPISetting? SeteliteAPISetting { get => _seteliteAPISetting; }
-
+        public AccountStore AccountStore { get => _accountStore;  }
         public void SaveSetting()
         {
             throw new NotImplementedException();

@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using 영상뷰어.Helpers;
+using 영상뷰어.Interfaces;
 using 영상뷰어.Services.DataBase;
+using 영상뷰어.Services.Navigation;
 using 영상뷰어.Stores;
 
 namespace 영상뷰어.ViewModels
@@ -17,10 +19,12 @@ namespace 영상뷰어.ViewModels
     {
         public virtual string UserPassword { get; set; }
         public virtual string UserId { get; set; }
-        private readonly AccountStore _accountStore;
-        public LoginViewModel(AccountStore accountStore) 
+        private readonly ISettingService _settingService;
+        private readonly INavigation _navigation;
+        public LoginViewModel(ISettingService accountStore, INavigation navigation) 
         {
-            _accountStore = accountStore;
+            _settingService = accountStore;
+            _navigation = navigation;
         }
         [Command]
         public void onSignUp()
@@ -47,7 +51,8 @@ namespace 영상뷰어.ViewModels
                 if(string.Compare(user.Password, checedCncrypedPassword, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     Console.WriteLine("로그인 성공");
-                    _accountStore.CurrentAccount = user;
+                    _settingService.AccountStore.CurrentAccount = user;
+                    _navigation.Navigate<HomeViewModel>();
                 }
                 else
                 {

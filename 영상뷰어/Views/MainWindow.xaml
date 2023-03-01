@@ -7,9 +7,7 @@
         xmlns:local="clr-namespace:영상뷰어"
         xmlns:converters="clr-namespace:영상뷰어.Converters"
         xmlns:v="clr-namespace:영상뷰어.Views"
-        mc:Ignorable="d"
-       
-        DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}">
+        mc:Ignorable="d">
     <UserControl.Resources>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <converters:BoolToVisibilityConverter

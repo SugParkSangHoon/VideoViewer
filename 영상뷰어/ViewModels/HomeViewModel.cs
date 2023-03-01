@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.Interfaces;
 using 영상뷰어.Stores;
 
 namespace 영상뷰어.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private readonly AccountStore _account;
+        private readonly ISettingService _settingService;
         public virtual string UserId { get; set; }
-        public HomeViewModel(AccountStore account)
+        public HomeViewModel(ISettingService settingService)
         {
-            this._account = account;
-            if(_account.CurrentAccount is not null)
-                UserId = _account.CurrentAccount.Id;
+            this._settingService = settingService;
+            if(_settingService.AccountStore.CurrentAccount is not null)
+                UserId = _settingService.AccountStore.CurrentAccount.Id;
         }
     }
 }

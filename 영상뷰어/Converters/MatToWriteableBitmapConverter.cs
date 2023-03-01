@@ -18,7 +18,7 @@ namespace 영상뷰어.Converters
                 return null;
             }
             string pixelFormat = parameter.ToString();
-            return cnvt.ToBitmapSource();
+            //return cnvt.ToBitmapSource();
             return pixelFormat switch
             {
                 "Bgr101010" => cnvt.ToWriteableBitmap(cnvt.Width, cnvt.Height, PixelFormats.Bgr101010, null),

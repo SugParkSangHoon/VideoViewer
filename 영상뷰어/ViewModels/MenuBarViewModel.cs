@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using 영상뷰어.Services.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using 영상뷰어.Stores;
+using 영상뷰어.Interfaces;
 
 namespace 영상뷰어.ViewModels
 {
@@ -16,17 +17,17 @@ namespace 영상뷰어.ViewModels
     {
         
         private readonly INavigation _navigation;
-        private readonly AccountStore _accountStore;
-        public MenuBarViewModel(INavigation navigation,AccountStore accountStore)
+        private readonly ISettingService _settingService;
+        public MenuBarViewModel(INavigation navigation, ISettingService accountStore)
         {
             _navigation = navigation;
-            _accountStore = accountStore;
-            _accountStore.CurrentAccountChanged += OnCurrentAccountChange;
+            _settingService = accountStore;
+            _settingService.AccountStore.CurrentAccountChanged += OnCurrentAccountChange;
         }
 
         private void OnCurrentAccountChange()
         {
-            IsLogin = _accountStore.IsLoggedIn;
+            IsLogin = _settingService.AccountStore.IsLoggedIn;
         }
 
         public virtual bool IsLogin { get; set; }

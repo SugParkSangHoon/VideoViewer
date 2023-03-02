@@ -46,6 +46,7 @@
                                       "{Binding Path=CameraType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <style:PlaceHolderTextBox TextBoxHintText="지역 구분" TextBoxValue="{Binding CameraArea}"/>
             <style:PlaceHolderTextBox TextBoxHintText="파일이름" TextBoxValue="{Binding FileName}"/>
+            
             <style:UserControl1 Margin="70 10" kWValue="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged}" Title="{Binding Test2, Mode=TwoWay,
                 UpdateSourceTrigger=PropertyChanged}"/>
 

@@ -14,12 +14,13 @@ namespace 영상뷰어.ViewModels
         private readonly INavigation _navigation;
         public SateliteAPISearchViewModel(INavigation navigation)
         {
-            _navigation = navigation;            
+            _navigation = navigation;
             EndSearchDate = DateTime.Now;
-            StartSearchDate = EndSearchDate.AddMonths(-1);            
-        }   
+            StartSearchDate = EndSearchDate.AddMonths(-1);
+            Test2 = "TEST 입니다";
+        }
 
-        
+
         public virtual string UserId { get; set; }
         public string CameraType
         {
@@ -41,7 +42,25 @@ namespace 영상뷰어.ViewModels
             get { return GetValue<string>(nameof(Test)); }
             set { SetValue(value, nameof(Test)); }
         }
-        public virtual DateTime StartSearchDate { get; set; }
+        //public string Test2
+        //{
+        //    get { return GetValue<string>(nameof(Test2)); }
+        //    set { SetValue(value, nameof(Test2)); }
+        //}
+        public DateTime StartSearchDate
+        {
+            get { return GetValue<DateTime>(nameof(StartSearchDate)); }
+            set { SetValue(value, nameof(StartSearchDate)); }
+        }
+        private string test2;
+        public string Test2
+        {
+            get { return test2; }
+            set { SetProperty(ref test2, value, nameof(test2)); }
+        }
+
+        //public virtual string Test2 { get; set; }
+        //public virtual DateTime StartSearchDate { get; set; }
         public virtual DateTime EndSearchDate { get; set; }
         [Command]
         public void OnSearch()

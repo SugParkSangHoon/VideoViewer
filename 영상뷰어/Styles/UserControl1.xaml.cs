@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,13 +28,34 @@ namespace 영상뷰어.Styles
             DataContext = this;
         }
         public static readonly DependencyProperty kWValueProperty = DependencyProperty.Register(
-       "kWValue", typeof(string), typeof(UserControl1), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));   
-
-
+       "kWValue", typeof(string), typeof(UserControl1), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public string kWValue
         {
             get { return (string)GetValue(kWValueProperty); }
             set { SetValue(kWValueProperty, value); }
+        }
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleValueProperty); }
+            set { SetValue(TitleValueProperty, value); }
+        }
+        public static readonly DependencyProperty TitleValueProperty =
+          DependencyProperty.Register("Title", typeof(string), typeof(UserControl1), 
+              new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTextChanged));
+
+        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UserControl1 control = d as UserControl1;
+            if (control != null)
+            {
+                control.UpdateText();
+            }
+        }
+
+        private void UpdateText()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -25,7 +25,8 @@ namespace 영상뷰어.Styles
         public UserControl1()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
+            //Title = "TEST";
         }
         public static readonly DependencyProperty kWValueProperty = DependencyProperty.Register(
        "kWValue", typeof(string), typeof(UserControl1), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -41,21 +42,8 @@ namespace 영상뷰어.Styles
             set { SetValue(TitleValueProperty, value); }
         }
         public static readonly DependencyProperty TitleValueProperty =
-          DependencyProperty.Register("Title", typeof(string), typeof(UserControl1), 
-              new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTextChanged));
+          DependencyProperty.Register("Title", typeof(string), typeof(UserControl1),
+              new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            UserControl1 control = d as UserControl1;
-            if (control != null)
-            {
-                control.UpdateText();
-            }
-        }
-
-        private void UpdateText()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

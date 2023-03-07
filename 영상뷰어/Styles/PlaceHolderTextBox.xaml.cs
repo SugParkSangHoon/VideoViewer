@@ -28,7 +28,7 @@ namespace 영상뷰어.Styles
             nameof(TextBoxValue),
             typeof(string),
             typeof(PlaceHolderTextBox),
-            new PropertyMetadata(default(string)));
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty HitTextProperty =
             DependencyProperty.Register(

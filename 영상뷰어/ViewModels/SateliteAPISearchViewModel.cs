@@ -17,11 +17,14 @@ namespace 영상뷰어.ViewModels
             _navigation = navigation;
             EndSearchDate = DateTime.Now;
             StartSearchDate = EndSearchDate.AddMonths(-1);
-            Test2 = "TEST 입니다";
         }
 
-
-        public virtual string UserId { get; set; }
+        public string UserId
+        {
+            get { return GetValue<string>(nameof(UserId)); }
+            set { SetValue(value, nameof(UserId)); }
+        }
+        //public virtual string UserId { get; set; }
         public string CameraType
         {
             get { return GetValue<string>(nameof(CameraType)); }
@@ -52,20 +55,20 @@ namespace 영상뷰어.ViewModels
             get { return GetValue<DateTime>(nameof(StartSearchDate)); }
             set { SetValue(value, nameof(StartSearchDate)); }
         }
-        private string test2;
-        public string Test2
-        {
-            get { return test2; }
-            set { SetProperty(ref test2, value, nameof(test2)); }
-        }
+        //private string test2;
+        //public string Test2
+        //{
+        //    get { return test2; }
+        //    set { SetProperty(ref test2, value, nameof(test2)); }
+        //}
 
-        //public virtual string Test2 { get; set; }
+        public virtual string Test2 { get; set; }
         //public virtual DateTime StartSearchDate { get; set; }
         public virtual DateTime EndSearchDate { get; set; }
         [Command]
         public void OnSearch()
         {
-
+            Test2 = "TEST2";
         }
         [Command]
         public void OnCancel()

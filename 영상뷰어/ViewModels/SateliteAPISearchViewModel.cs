@@ -1,10 +1,14 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 영상뷰어.enums;
+using 영상뷰어.Services.DataBase;
 using 영상뷰어.Services.Navigation;
 
 namespace 영상뷰어.ViewModels
@@ -17,24 +21,29 @@ namespace 영상뷰어.ViewModels
             _navigation = navigation;
             EndSearchDate = DateTime.Now;
             StartSearchDate = EndSearchDate.AddMonths(-1);
+            CameraType = eCameraType.vi006;
+            CameraArea = eCameraArea.ko;
         }
-
+        public virtual eCameraType CameraType { get; set; }
+        public virtual eCameraArea CameraArea { get; set; }
+        public virtual List<eCameraType> CameraTypes => Enum.GetValues(typeof(eCameraType)).Cast<eCameraType>().ToList();
+        public virtual List<eCameraArea> CameraAreas => Enum.GetValues(typeof(eCameraArea)).Cast<eCameraArea>().ToList();
         public string UserId
         {
             get { return GetValue<string>(nameof(UserId)); }
             set { SetValue(value, nameof(UserId)); }
         }
         //public virtual string UserId { get; set; }
-        public string CameraType
-        {
-            get { return GetValue<string>(nameof(CameraType)); }
-            set { SetValue(value, nameof(CameraType)); }
-        }
-        public string CameraArea
-        {
-            get { return GetValue<string>(nameof(CameraArea)); }
-            set { SetValue(value, nameof(CameraArea)); }
-        }
+        //public string CameraType
+        //{
+        //    get { return GetValue<string>(nameof(CameraType)); }
+        //    set { SetValue(value, nameof(CameraType)); }
+        //}
+        //public string CameraArea
+        //{
+        //    get { return GetValue<string>(nameof(CameraArea)); }
+        //    set { SetValue(value, nameof(CameraArea)); }
+        //}
         public string FileName
         {
             get { return GetValue<string>(nameof(FileName)); }
@@ -66,9 +75,21 @@ namespace 영상뷰어.ViewModels
         //public virtual DateTime StartSearchDate { get; set; }
         public virtual DateTime EndSearchDate { get; set; }
         [Command]
-        public void OnSearch()
+        public async void OnSearch()
         {
-            Test2 = "TEST2";
+            using (var context = new SateliteDbContext())
+            {
+                var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
+                var factory = serviceProvider.GetService<ILoggerFactory>();
+
+                var isSuecess = context.Database.EnsureCreated(); //데이터 베이스가 만들어져 있는지 확인
+                                                                  //[A] Arrange :1 번 데이터를 아래 항목으로 저장
+                var repository = new SatelliteRepository(context, factory);
+
+                var result = await repository.GetSearchSatelliteData(UserId,CameraType.ToString(),CameraArea.ToString(), 
+                    StartSearchDate , EndSearchDate, FileName);
+                int data = 1;
+            }
         }
         [Command]
         public void OnCancel()

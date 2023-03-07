@@ -30,11 +30,12 @@ namespace 영상뷰어.ViewModels
             SateliteItems = new ObservableCollection<SatelliteData>();
             Messenger.Default.Register<ObservableCollection<SatelliteData>>(this, ReceiveData);
             
-            TestItemAdd();
+            //TestItemAdd();
         }
 
         private void ReceiveData(ObservableCollection<SatelliteData> obj)
         {
+            SateliteItems = new ObservableCollection<SatelliteData>();
             SateliteItems = obj;
         }
         private void TestItemAdd()

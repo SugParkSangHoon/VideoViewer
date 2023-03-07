@@ -41,10 +41,12 @@
             
             <style:PlaceHolderTextBox TextBoxHintText="ID" TextBoxValue=
                                       "{Binding UserId, UpdateSourceTrigger=PropertyChanged}"/>
-            <style:PlaceHolderTextBox TextBoxHintText="영상 구분" 
+            <!--<style:PlaceHolderTextBox TextBoxHintText="영상 구분" 
                                       TextBoxValue=
                                       "{Binding Path=CameraType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <style:PlaceHolderTextBox TextBoxHintText="지역 구분" TextBoxValue="{Binding CameraArea}"/>
+            <style:PlaceHolderTextBox TextBoxHintText="지역 구분" TextBoxValue="{Binding CameraArea}"/>-->
+            <ComboBox Margin="70 10" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding CameraTypes}" SelectedItem="{Binding CameraType}"/>
+            <ComboBox Margin="70 10" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding CameraAreas}" SelectedItem="{Binding CameraArea}"/>
             <style:PlaceHolderTextBox TextBoxHintText="파일이름" TextBoxValue="{Binding FileName}"/>
             
             <style:UserControl1 Margin="70 10" kWValue="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged}"

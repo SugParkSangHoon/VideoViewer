@@ -50,8 +50,8 @@ namespace 영상뷰어.ViewModels
         {
             //string FilePath = @"E:\WPF_Project\VideoViewer\영상뷰어\bin\Debug\net6.0-windows\20230118\sw038_ko020lc_202301170000.jpg";
             //Mat image = Cv2.ImRead(FilePath, ImreadModes.Color);
-            CurrentViewModel = (SateliteAPISearchViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPISearchViewModel)));
-            //CurrentViewModel = (HomeViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
+            //CurrentViewModel = (SateliteAPISearchViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(SateliteAPISearchViewModel)));
+            CurrentViewModel = (HomeViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(HomeViewModel)));
             Messenger.Default.Register<DialogDataStore>(this, onDialogRecvData);
 
             //CurrentDialogViewModel = (ImageLoadViewModel)App.ServiceProvider.GetRequiredService(ViewModelSource.GetPOCOType(typeof(ImageLoadViewModel)));

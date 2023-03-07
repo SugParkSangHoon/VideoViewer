@@ -71,7 +71,25 @@ namespace 영상뷰어.Services.DataBase
                 .SingleOrDefaultAsync(m => m.NumberID == id);
             return model;
         }
-
+        public async Task<List<SatelliteData>> GetByDatePeriodAsync(DateTime startDate, DateTime endDate)
+        {
+            var model = from m in _context.SatelliteDatas
+                        where m.FileCreateDate >= startDate && m.FileCreateDate <= endDate
+                        select m;
+            return await model.ToListAsync();
+        }
+        public async Task<List<SatelliteData>> GetSearchSatelliteData(string userId ,string cameraType, string cameraArea,
+            DateTime startDateTime, DateTime endDataTime, string filePath = null)
+        {
+            var model = from m in _context.SatelliteDatas
+                        where (m.FileCreateDate >= startDateTime && m.FileCreateDate <= endDataTime)
+                        && (string.IsNullOrEmpty(userId) || m.UserID.Contains(userId))
+                        && (string.IsNullOrEmpty(cameraType) || m.SatelliteType.Contains(cameraType))
+                        && (string.IsNullOrEmpty(cameraArea) || m.SatelliteArea.Contains(cameraArea))
+                        && (string.IsNullOrEmpty(filePath) || m.FilePath.Contains(filePath))
+                        select m;
+            return await model.ToListAsync();
+        }
         public async Task<bool> UpdateAsync(SatelliteData model)
         {
             try
